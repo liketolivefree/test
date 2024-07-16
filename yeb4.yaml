@@ -1,0 +1,286 @@
+mixed-port: 7890
+allow-lan: true
+tcp-concurrent: true
+enable-process: true
+find-process-mode: always
+mode: rule
+log-level: info
+ipv6: true
+external-controller: 127.0.0.1:9090
+experimental:
+  ignore-resolve-fail: true
+  sniff-tls-sni: true
+  tracing: true
+hosts:
+  "localhost": 127.0.0.1
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  sniff:
+    http: { ports: [1-442, 444-8442, 8444-65535], override-destination: true }
+    tls: { ports: [1-79, 81-8079, 8081-65535], override-destination: true }
+  force-domain:
+      - "+.v2ex.com"
+  skip-domain:
+      - Mijia Cloud
+  sniffing:
+    - tls
+    - http
+  port-whitelist:
+    - "80"
+    - "443"
+
+tun:
+  enable: true
+  prefer-h3: true
+  listen: 0.0.0.0:53
+  stack: gvisor
+  dns-hijack:
+     - "any:53"
+     - "tcp://any:53"
+  auto-redir: true
+  auto-route: true
+  auto-detect-interface: true
+
+dns:
+  enable: true
+  ipv6: true
+  default-nameserver:
+    - '1.1.1.1'
+    - '8.8.8.8'
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - 'stun.*.*'
+    - 'stun.*.*.*'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+    - '*.lan'
+    - '+.msftncsi.com'
+    - msftconnecttest.com
+    - 'time?.*.com'
+    - 'time.*.com'
+    - 'time.*.gov'
+    - 'time.*.apple.com'
+    - time-ios.apple.com
+    - 'time1.*.com'
+    - 'time2.*.com'
+    - 'time3.*.com'
+    - 'time4.*.com'
+    - 'time5.*.com'
+    - 'time6.*.com'
+    - 'time7.*.com'
+    - 'ntp?.*.com'
+    - 'ntp.*.com'
+    - 'ntp1.*.com'
+    - 'ntp2.*.com'
+    - 'ntp3.*.com'
+    - 'ntp4.*.com'
+    - 'ntp5.*.com'
+    - 'ntp6.*.com'
+    - 'ntp7.*.com'
+    - '+.pool.ntp.org'
+    - '+.ipv6.microsoft.com'
+    - speedtest.cros.wr.pvp.net
+    - network-test.debian.org
+    - detectportal.firefox.com
+    - cable.auth.com
+    - miwifi.com
+    - routerlogin.com
+    - routerlogin.net
+    - tendawifi.com
+    - tendawifi.net
+    - tplinklogin.net
+    - tplinkwifi.net
+    - '*.xiami.com'
+    - tplinkrepeater.net
+    - router.asus.com
+    - '*.*.*.srv.nintendo.net'
+    - '*.*.stun.playstation.net'
+    - '*.openwrt.pool.ntp.org'
+    - resolver1.opendns.com
+    - 'GC._msDCS.*.*'
+    - 'DC._msDCS.*.*'
+    - 'PDC._msDCS.*.*'
+  use-hosts: true
+  nameserver:
+    - '8.8.4.4'
+    - '1.0.0.1'
+    - "https://1.0.0.1/dns-query"
+    - "https://8.8.4.4/dns-query"
+  nameserver-policy:
+    'RULE-SET:xal': [ '217.218.155.155', '217.218.127.127', "https://dns.403.online/dns-query", "https://dns.shecan.ir/dns-query" ]
+
+proxy-providers:
+  a:
+    type: http
+    url: https://raw.githubusercontent.com/yebekhe/TVC/main/subscriptions/meta/mix
+    interval: 3600
+    path: ./proxy-providers/a.yaml
+    health-check:
+      enable: true
+      interval: 60
+      url: http://www.gstatic.com/generate_204
+      timeout: 5000
+    override:
+      udp: true
+
+proxy-groups:
+  - name: QQOLI
+    type: select
+    proxies:
+      - URL-TEST
+      - FALLBACK
+    use:
+      - a
+      
+  - name: URL-TEST
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 60
+    tolerance: 50
+    use:
+      - a
+      
+  - name: FALLBACK
+    type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 60
+    use:
+      - a
+      
+rule-providers:
+  aff: { type: http, format: text, behavior: domain, path: ./ruleset/aff.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/rjct_dom_me.txt, interval: 86400 }
+  yun: { type: http, format: text, behavior: ipcidr, path: ./ruleset/yun.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/rjct_ip_me.txt, interval: 86400 }
+  oki: { type: http, format: text, behavior: domain, path: ./ruleset/oki.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/prx_dom.txt, interval: 86400 }
+  doki: { type: http, format: text, behavior: ipcidr, path: ./ruleset/doki.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/prx_ip.txt, interval: 86400 }
+  xal: { type: http, format: text, behavior: domain, path: ./ruleset/xal.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/dir_dom.txt, interval: 86400 }
+  loo: { type: http, format: text, behavior: ipcidr, path: ./ruleset/loo.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/dir_ip.txt, interval: 86400 }
+
+rules:
+  - DOMAIN-SUFFIX,lan,DIRECT
+  - DOMAIN-SUFFIX,local,DIRECT
+  - DOMAIN-SUFFIX,localdomain,DIRECT
+  - DOMAIN-SUFFIX,localhost,DIRECT
+  - DOMAIN-SUFFIX,ip6-localhost,DIRECT
+  - DOMAIN-SUFFIX,ip6-loopback,DIRECT
+  - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - IP-CIDR,0.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.0.0.0/24,DIRECT,no-resolve
+  - IP-CIDR,192.0.2.0/24,DIRECT,no-resolve
+  - IP-CIDR,192.88.99.0/24,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,198.18.0.0/15,DIRECT,no-resolve
+  - IP-CIDR,198.51.100.0/24,DIRECT,no-resolve
+  - IP-CIDR,203.0.113.0/24,DIRECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR,240.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR6,::/127,DIRECT,no-resolve
+  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
+  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
+  - IP-CIDR6,ff00::/8,DIRECT,no-resolve
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - DOMAIN,yacd.metacubex.one,DIRECT
+  - DOMAIN,clash.metacubex.one,DIRECT
+  - PROCESS-NAME,BingChatInstaller.EXE,REJECT
+  - PROCESS-NAME,MicrosoftEdgeUpdate.exe,REJECT
+  - PROCESS-NAME,MpDefenderCoreService.exe,REJECT
+  - PROCESS-NAME,MsMpEng.exe,REJECT
+  - PROCESS-NAME,NVIDIA GeForce Experience.exe,REJECT
+  - PROCESS-NAME,NVIDIA Web Helper.exe,REJECT
+  - PROCESS-NAME,OfficeC2RClient.exe,REJECT
+  - PROCESS-NAME,OfficeClickToRun.exe,REJECT
+  - PROCESS-NAME,SDXHelper.exe,REJECT
+  - PROCESS-NAME,SIHClient.exe,REJECT
+  - PROCESS-NAME,SearchApp.exe,REJECT
+  - PROCESS-NAME,WINWORD.EXE,REJECT
+  - PROCESS-NAME,backgroundTaskHost.exe,REJECT
+  - PROCESS-NAME,msiexec.exe,REJECT
+  - PROCESS-NAME,msoia.exe,REJECT
+  - PROCESS-NAME,nvcontainer.exe,REJECT
+  - PROCESS-NAME,smartscreen.exe,REJECT
+  - PROCESS-NAME,svchost.exe,REJECT
+  - PROCESS-NAME,taskhostw.exe,REJECT
+  - PROCESS-NAME,updater.exe,REJECT
+  - DOMAIN-SUFFIX,dns.google.com,QQOLI
+  - DOMAIN-SUFFIX,accounts.google.com,QQOLI
+  - DOMAIN-SUFFIX,books.google.com,QQOLI
+  - DOMAIN-SUFFIX,calendar.google.com,QQOLI
+  - DOMAIN-SUFFIX,chrome.google.com,QQOLI
+  - DOMAIN-SUFFIX,code.google.com,QQOLI
+  - DOMAIN-SUFFIX,consent.google.com,QQOLI
+  - DOMAIN-SUFFIX,contacts.google.com,QQOLI
+  - DOMAIN-SUFFIX,docs.google.com,QQOLI
+  - DOMAIN-SUFFIX,drive.google.com,QQOLI
+  - DOMAIN-SUFFIX,images.google.com,QQOLI
+  - DOMAIN-SUFFIX,mail.google.com,QQOLI
+  - DOMAIN-SUFFIX,maps.google.com,QQOLI
+  - DOMAIN-SUFFIX,maps.googleapis.com,QQOLI
+  - DOMAIN-SUFFIX,maps.gstatic.com,QQOLI
+  - DOMAIN-SUFFIX,photos.google.com,QQOLI
+  - DOMAIN-SUFFIX,play.google.com,QQOLI
+  - DOMAIN-SUFFIX,plus.google.com,QQOLI
+  - DOMAIN-SUFFIX,scholar.google.com,QQOLI
+  - DOMAIN-SUFFIX,support.google.com,QQOLI
+  - DOMAIN-SUFFIX,translate.google.com,QQOLI
+  - DOMAIN-SUFFIX,translate.googleapis.com,QQOLI
+  - DOMAIN-SUFFIX,trends.google.com,QQOLI
+  - DOMAIN-SUFFIX,video.google.com,QQOLI
+  - DOMAIN-SUFFIX,www.google-analytics.l.google.com,QQOLI
+  - DOMAIN-SUFFIX,chromewebstore.google.com,QQOLI
+  - DOMAIN-SUFFIX,developer.android.com,QQOLI
+  - DOMAIN-SUFFIX,encrypted.google.com,QQOLI
+  - DOMAIN-SUFFIX,sites.google.com,QQOLI
+  - DOMAIN-SUFFIX,chopsdash.appspot.com,QQOLI
+  - DOMAIN-SUFFIX,chrome-devtools-frontend.appspot.com,QQOLI
+  - DOMAIN-SUFFIX,hostsaway.appspot.com,QQOLI
+  - DOMAIN-SUFFIX,shaka-player-demo.appspot.com,QQOLI
+  - DOMAIN-SUFFIX,answers.microsoft.com,QQOLI
+  - DOMAIN-SUFFIX,cxcs.microsoft.net,QQOLI
+  - DOMAIN-SUFFIX,docs.microsoft.com,QQOLI
+  - DOMAIN-SUFFIX,download.microsoft.com,QQOLI
+  - DOMAIN-SUFFIX,technet.microsoft.com,QQOLI
+  - DOMAIN-SUFFIX,go.microsoft.com,QQOLI
+  - DOMAIN-SUFFIX,learn.microsoft.com,QQOLI
+  - DOMAIN-SUFFIX,support.microsoft.com,QQOLI
+  - DOMAIN-SUFFIX,www.microsoft.com,QQOLI
+  - DOMAIN-SUFFIX,clients.config.office.net,QQOLI
+  - DOMAIN-SUFFIX,res-1.cdn.office.net,QQOLI
+  - DOMAIN-SUFFIX,support.content.office.net,QQOLI
+  - DOMAIN-SUFFIX,endpoints.office.com,QQOLI
+  - DOMAIN-SUFFIX,ecs.office.com,QQOLI
+  - DOMAIN-SUFFIX,r4.res.office365.com,QQOLI
+  - DOMAIN-SUFFIX,cf-wkrs-pages-vless-aoy.pages.dev,QQOLI
+  - DOMAIN-SUFFIX,edtunnel-b6t.pages.dev,QQOLI
+  - DOMAIN-SUFFIX,malware-filter.pages.dev,QQOLI
+  - DOMAIN-SUFFIX,phishing-filter.pages.dev,QQOLI
+  - DOMAIN-SUFFIX,ublockorigin.pages.dev,QQOLI
+  - DOMAIN-SUFFIX,api.amazon.com,QQOLI
+  - DOMAIN-SUFFIX,aws.amazon.com,QQOLI
+  - DOMAIN-SUFFIX,images.amazon.com,QQOLI
+  - DOMAIN-SUFFIX,ip-ranges.amazonaws.com,QQOLI
+  - DOMAIN-SUFFIX,db187550c7dkf.cloudfront.net,QQOLI
+  - DOMAIN-SUFFIX,dqpnq362acqdi.cloudfront.net,QQOLI
+  - DOMAIN-SUFFIX,ebay.doubleclick.net,QQOLI
+  - DOMAIN-SUFFIX,trk.free.fr,QQOLI
+  - DOMAIN-SUFFIX,f001.backblazeb2.com,QQOLI
+  - RULE-SET,aff,REJECT
+  - DOMAIN-SUFFIX,ir,DIRECT
+  - RULE-SET,xal,DIRECT
+  - RULE-SET,oki,QQOLI
+  - RULE-SET,yun,REJECT,no-resolve
+  - RULE-SET,loo,DIRECT,no-resolve
+  - RULE-SET,doki,QQOLI,no-resolve
+  - MATCH,QQOLI

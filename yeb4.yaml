@@ -114,14 +114,14 @@ dns:
     - "https://1.0.0.1/dns-query"
     - "https://8.8.4.4/dns-query"
   nameserver-policy:
-    'RULE-SET:xal': [ '217.218.155.155', '217.218.127.127', "https://dns.403.online/dns-query", "https://dns.shecan.ir/dns-query" ]
+    'RULE-SET:dd': [ '217.218.155.155', '217.218.127.127', "https://dns.403.online/dns-query", "https://dns.shecan.ir/dns-query" ]
 
 proxy-providers:
-  a:
+  tt:
     type: http
     url: https://raw.githubusercontent.com/yebekhe/TVC/main/subscriptions/meta/mix
     interval: 3600
-    path: ./proxy-providers/a.yaml
+    path: ./proxy-providers/tt.yaml
     health-check:
       enable: true
       interval: 60
@@ -137,7 +137,7 @@ proxy-groups:
       - URL-TEST
       - FALLBACK
     use:
-      - a
+      - tt
       
   - name: URL-TEST
     type: url-test
@@ -145,22 +145,22 @@ proxy-groups:
     interval: 60
     tolerance: 50
     use:
-      - a
+      - tt
       
   - name: FALLBACK
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 60
     use:
-      - a
+      - tt
       
 rule-providers:
-  aff: { type: http, format: text, behavior: domain, path: ./ruleset/aff.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/rjct_dom_me.txt, interval: 86400 }
-  yun: { type: http, format: text, behavior: ipcidr, path: ./ruleset/yun.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/rjct_ip_me.txt, interval: 86400 }
-  oki: { type: http, format: text, behavior: domain, path: ./ruleset/oki.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/prx_dom.txt, interval: 86400 }
-  doki: { type: http, format: text, behavior: ipcidr, path: ./ruleset/doki.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/prx_ip.txt, interval: 86400 }
-  xal: { type: http, format: text, behavior: domain, path: ./ruleset/xal.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/dir_dom.txt, interval: 86400 }
-  loo: { type: http, format: text, behavior: ipcidr, path: ./ruleset/loo.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/dir_ip.txt, interval: 86400 }
+  rd: { type: http, format: text, behavior: domain, path: ./ruleset/rd.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/rjct_dom_me.txt, interval: 86400 }
+  ri: { type: http, format: text, behavior: ipcidr, path: ./ruleset/ri.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/rjct_ip_me.txt, interval: 86400 }
+  pd: { type: http, format: text, behavior: domain, path: ./ruleset/pd.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/prx_dom.txt, interval: 86400 }
+  pi: { type: http, format: text, behavior: ipcidr, path: ./ruleset/pi.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/prx_ip.txt, interval: 86400 }
+  dd: { type: http, format: text, behavior: domain, path: ./ruleset/dd.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/dir_dom.txt, interval: 86400 }
+  di: { type: http, format: text, behavior: ipcidr, path: ./ruleset/di.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/dir_ip.txt, interval: 86400 }
 
 rules:
   - DOMAIN-SUFFIX,lan,DIRECT
@@ -276,11 +276,11 @@ rules:
   - DOMAIN-SUFFIX,ebay.doubleclick.net,QQOLI
   - DOMAIN-SUFFIX,trk.free.fr,QQOLI
   - DOMAIN-SUFFIX,f001.backblazeb2.com,QQOLI
-  - RULE-SET,aff,REJECT
+  - RULE-SET,rd,REJECT
   - DOMAIN-SUFFIX,ir,DIRECT
-  - RULE-SET,xal,DIRECT
-  - RULE-SET,oki,QQOLI
-  - RULE-SET,yun,REJECT,no-resolve
-  - RULE-SET,loo,DIRECT,no-resolve
-  - RULE-SET,doki,QQOLI,no-resolve
+  - RULE-SET,dd,DIRECT
+  - RULE-SET,pd,QQOLI
+  - RULE-SET,ri,REJECT,no-resolve
+  - RULE-SET,di,DIRECT,no-resolve
+  - RULE-SET,pi,QQOLI,no-resolve
   - MATCH,QQOLI

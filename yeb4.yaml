@@ -4,7 +4,7 @@ tcp-concurrent: true
 enable-process: true
 find-process-mode: always
 mode: rule
-log-level: info
+log-level: error
 ipv6: true
 external-controller: 127.0.0.1:9090
 experimental:
@@ -20,10 +20,12 @@ profile:
 sniffer:
   enable: true
   sniff:
-    http: { ports: [1-442, 444-8442, 8444-65535], override-destination: true }
-    tls: { ports: [1-79, 81-8079, 8081-65535], override-destination: true }
+    http: { ports: [ 1-442, 444-8442, 8444-65535 ], override-destination: true }
+    tls: { ports: [ 1-79, 81-8079, 8081-65535 ], override-destination: true }
   force-domain:
       - "+.v2ex.com"
+      - www.google.com
+      - google.com
   skip-domain:
       - Mijia Cloud
   sniffing:
@@ -35,13 +37,10 @@ sniffer:
 
 tun:
   enable: true
-  prefer-h3: true
-  listen: 0.0.0.0:53
   stack: gvisor
   dns-hijack:
      - "any:53"
      - "tcp://any:53"
-  auto-redir: true
   auto-route: true
   auto-detect-interface: true
 
@@ -114,7 +113,7 @@ dns:
     - "https://1.0.0.1/dns-query"
     - "https://8.8.4.4/dns-query"
   nameserver-policy:
-    'RULE-SET:dd': [ '217.218.155.155', '217.218.127.127', "https://dns.403.online/dns-query", "https://dns.shecan.ir/dns-query" ]
+    'RULE-SET:ir': [ '217.218.155.155', '217.218.127.127', "https://dns.403.online/dns-query", "https://dns.shecan.ir/dns-query" ]
 
 proxy-providers:
   tt:
@@ -131,14 +130,14 @@ proxy-providers:
       udp: true
 
 proxy-groups:
-  - name: QQOLI
+  - name: MANUAL
     type: select
     proxies:
       - URL-TEST
       - FALLBACK
     use:
       - tt
-      
+
   - name: URL-TEST
     type: url-test
     url: http://www.gstatic.com/generate_204
@@ -146,141 +145,44 @@ proxy-groups:
     tolerance: 50
     use:
       - tt
-      
+
   - name: FALLBACK
     type: fallback
     url: http://www.gstatic.com/generate_204
     interval: 60
     use:
       - tt
-      
-rule-providers:
-  rd: { type: http, format: text, behavior: domain, path: ./ruleset/rd.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/rjct_dom_me.txt, interval: 86400 }
-  ri: { type: http, format: text, behavior: ipcidr, path: ./ruleset/ri.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/rjct_ip_me.txt, interval: 86400 }
-  pd: { type: http, format: text, behavior: domain, path: ./ruleset/pd.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/prx_dom.txt, interval: 86400 }
-  pi: { type: http, format: text, behavior: ipcidr, path: ./ruleset/pi.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/prx_ip.txt, interval: 86400 }
-  dd: { type: http, format: text, behavior: domain, path: ./ruleset/dd.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/dir_dom.txt, interval: 86400 }
-  di: { type: http, format: text, behavior: ipcidr, path: ./ruleset/di.txt, url: https://raw.githubusercontent.com/liketolivefree/kobabi/main/dir_ip.txt, interval: 86400 }
 
+rule-providers:
+  ir: { type: http, format: text, behavior: domain, path: ./ruleset/ir.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ir.txt, interval: 86400 }
+  ads: { type: http, format: text, behavior: domain, path: ./ruleset/ads.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ads.txt, interval: 86400 }
+  ircidr: { type: http, format: text, behavior: ipcidr, path: ./ruleset/ircidr.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/ircidr.txt, interval: 86400 }
+  private: { type: http, format: text, behavior: ipcidr, path: ./ruleset/private.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/private.txt, interval: 86400 }
+  apps: { type: http, format: text, behavior: domain, path: ./ruleset/apps.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/apps.txt, interval: 86400 }
+  malware: { type: http, format: text, behavior: domain, path: ./ruleset/malware.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/malware.txt, interval: 86400 }
+  phishing: { type: http, format: text, behavior: domain, path: ./ruleset/phishing.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/phishing.txt, interval: 86400 }
+  cryptominers: { type: http, format: text, behavior: domain, path: ./ruleset/cryptominers.txt, url: https://github.com/chocolate4u/Iran-clash-rules/releases/latest/download/cryptominers.txt, interval: 86400 }
 rules:
-  - DOMAIN-SUFFIX,lan,DIRECT
+  - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
+  - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
+  - IP-CIDR,28.0.0.1/8,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
   - DOMAIN-SUFFIX,local,DIRECT
-  - DOMAIN-SUFFIX,localdomain,DIRECT
-  - DOMAIN-SUFFIX,localhost,DIRECT
   - DOMAIN-SUFFIX,ip6-localhost,DIRECT
   - DOMAIN-SUFFIX,ip6-loopback,DIRECT
-  - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
-  - IP-CIDR6,::1/128,DIRECT,no-resolve
-  - IP-CIDR,0.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
-  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
-  - IP-CIDR,192.0.0.0/24,DIRECT,no-resolve
-  - IP-CIDR,192.0.2.0/24,DIRECT,no-resolve
-  - IP-CIDR,192.88.99.0/24,DIRECT,no-resolve
-  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,198.18.0.0/15,DIRECT,no-resolve
-  - IP-CIDR,198.51.100.0/24,DIRECT,no-resolve
-  - IP-CIDR,203.0.113.0/24,DIRECT,no-resolve
-  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
-  - IP-CIDR,240.0.0.0/4,DIRECT,no-resolve
-  - IP-CIDR6,::/127,DIRECT,no-resolve
-  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
-  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
-  - IP-CIDR6,ff00::/8,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,lan,DIRECT
+  - DOMAIN-SUFFIX,localhost,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - DOMAIN,yacd.metacubex.one,DIRECT
   - DOMAIN,clash.metacubex.one,DIRECT
-  - PROCESS-NAME,BingChatInstaller.EXE,REJECT
-  - PROCESS-NAME,MicrosoftEdgeUpdate.exe,REJECT
-  - PROCESS-NAME,MpDefenderCoreService.exe,REJECT
-  - PROCESS-NAME,MsMpEng.exe,REJECT
-  - PROCESS-NAME,NVIDIA GeForce Experience.exe,REJECT
-  - PROCESS-NAME,NVIDIA Web Helper.exe,REJECT
-  - PROCESS-NAME,OfficeC2RClient.exe,REJECT
-  - PROCESS-NAME,OfficeClickToRun.exe,REJECT
-  - PROCESS-NAME,SDXHelper.exe,REJECT
-  - PROCESS-NAME,SIHClient.exe,REJECT
-  - PROCESS-NAME,SearchApp.exe,REJECT
-  - PROCESS-NAME,WINWORD.EXE,REJECT
-  - PROCESS-NAME,backgroundTaskHost.exe,REJECT
-  - PROCESS-NAME,msiexec.exe,REJECT
-  - PROCESS-NAME,msoia.exe,REJECT
-  - PROCESS-NAME,nvcontainer.exe,REJECT
-  - PROCESS-NAME,smartscreen.exe,REJECT
-  - PROCESS-NAME,svchost.exe,REJECT
-  - PROCESS-NAME,taskhostw.exe,REJECT
-  - PROCESS-NAME,updater.exe,REJECT
-  - DOMAIN-SUFFIX,dns.google.com,QQOLI
-  - DOMAIN-SUFFIX,accounts.google.com,QQOLI
-  - DOMAIN-SUFFIX,books.google.com,QQOLI
-  - DOMAIN-SUFFIX,calendar.google.com,QQOLI
-  - DOMAIN-SUFFIX,chrome.google.com,QQOLI
-  - DOMAIN-SUFFIX,code.google.com,QQOLI
-  - DOMAIN-SUFFIX,consent.google.com,QQOLI
-  - DOMAIN-SUFFIX,contacts.google.com,QQOLI
-  - DOMAIN-SUFFIX,docs.google.com,QQOLI
-  - DOMAIN-SUFFIX,drive.google.com,QQOLI
-  - DOMAIN-SUFFIX,images.google.com,QQOLI
-  - DOMAIN-SUFFIX,mail.google.com,QQOLI
-  - DOMAIN-SUFFIX,maps.google.com,QQOLI
-  - DOMAIN-SUFFIX,maps.googleapis.com,QQOLI
-  - DOMAIN-SUFFIX,maps.gstatic.com,QQOLI
-  - DOMAIN-SUFFIX,photos.google.com,QQOLI
-  - DOMAIN-SUFFIX,play.google.com,QQOLI
-  - DOMAIN-SUFFIX,plus.google.com,QQOLI
-  - DOMAIN-SUFFIX,scholar.google.com,QQOLI
-  - DOMAIN-SUFFIX,support.google.com,QQOLI
-  - DOMAIN-SUFFIX,translate.google.com,QQOLI
-  - DOMAIN-SUFFIX,translate.googleapis.com,QQOLI
-  - DOMAIN-SUFFIX,trends.google.com,QQOLI
-  - DOMAIN-SUFFIX,video.google.com,QQOLI
-  - DOMAIN-SUFFIX,www.google-analytics.l.google.com,QQOLI
-  - DOMAIN-SUFFIX,chromewebstore.google.com,QQOLI
-  - DOMAIN-SUFFIX,developer.android.com,QQOLI
-  - DOMAIN-SUFFIX,encrypted.google.com,QQOLI
-  - DOMAIN-SUFFIX,sites.google.com,QQOLI
-  - DOMAIN-SUFFIX,chopsdash.appspot.com,QQOLI
-  - DOMAIN-SUFFIX,chrome-devtools-frontend.appspot.com,QQOLI
-  - DOMAIN-SUFFIX,hostsaway.appspot.com,QQOLI
-  - DOMAIN-SUFFIX,shaka-player-demo.appspot.com,QQOLI
-  - DOMAIN-SUFFIX,answers.microsoft.com,QQOLI
-  - DOMAIN-SUFFIX,cxcs.microsoft.net,QQOLI
-  - DOMAIN-SUFFIX,docs.microsoft.com,QQOLI
-  - DOMAIN-SUFFIX,download.microsoft.com,QQOLI
-  - DOMAIN-SUFFIX,technet.microsoft.com,QQOLI
-  - DOMAIN-SUFFIX,go.microsoft.com,QQOLI
-  - DOMAIN-SUFFIX,learn.microsoft.com,QQOLI
-  - DOMAIN-SUFFIX,support.microsoft.com,QQOLI
-  - DOMAIN-SUFFIX,www.microsoft.com,QQOLI
-  - DOMAIN-SUFFIX,clients.config.office.net,QQOLI
-  - DOMAIN-SUFFIX,res-1.cdn.office.net,QQOLI
-  - DOMAIN-SUFFIX,support.content.office.net,QQOLI
-  - DOMAIN-SUFFIX,endpoints.office.com,QQOLI
-  - DOMAIN-SUFFIX,ecs.office.com,QQOLI
-  - DOMAIN-SUFFIX,r4.res.office365.com,QQOLI
-  - DOMAIN-SUFFIX,cf-wkrs-pages-vless-aoy.pages.dev,QQOLI
-  - DOMAIN-SUFFIX,edtunnel-b6t.pages.dev,QQOLI
-  - DOMAIN-SUFFIX,malware-filter.pages.dev,QQOLI
-  - DOMAIN-SUFFIX,phishing-filter.pages.dev,QQOLI
-  - DOMAIN-SUFFIX,ublockorigin.pages.dev,QQOLI
-  - DOMAIN-SUFFIX,api.amazon.com,QQOLI
-  - DOMAIN-SUFFIX,aws.amazon.com,QQOLI
-  - DOMAIN-SUFFIX,images.amazon.com,QQOLI
-  - DOMAIN-SUFFIX,ip-ranges.amazonaws.com,QQOLI
-  - DOMAIN-SUFFIX,db187550c7dkf.cloudfront.net,QQOLI
-  - DOMAIN-SUFFIX,dqpnq362acqdi.cloudfront.net,QQOLI
-  - DOMAIN-SUFFIX,ebay.doubleclick.net,QQOLI
-  - DOMAIN-SUFFIX,trk.free.fr,QQOLI
-  - DOMAIN-SUFFIX,f001.backblazeb2.com,QQOLI
-  - RULE-SET,rd,REJECT
+  - RULE-SET,ads,REJECT
+  - RULE-SET,malware,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,private,DIRECT
+  - RULE-SET,apps,DIRECT
   - DOMAIN-SUFFIX,ir,DIRECT
-  - RULE-SET,dd,DIRECT
-  - RULE-SET,pd,QQOLI
-  - RULE-SET,ri,REJECT,no-resolve
-  - RULE-SET,di,DIRECT,no-resolve
-  - RULE-SET,pi,QQOLI,no-resolve
-  - MATCH,QQOLI
+  - RULE-SET,ir,DIRECT
+  - RULE-SET,ircidr,DIRECT
+  - MATCH,MANUAL

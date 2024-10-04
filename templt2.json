@@ -27,20 +27,20 @@
     "servers": [
       {
         "tag": "remote-dns",
-        "address": "https://1.1.1.1/dns-query",
-		"strategy": "prefer_ipv4",
-        "detour": "TTAQI"
+        "address": "tcp://185.228.168.10",
+		"address_resolver": "direct-dns",
+		"strategy": "ipv4_only"
       },
       {
         "tag": "direct-dns",
-        "address": "https://8.8.8.8/dns-query",
-        "strategy": "prefer_ipv4",
+        "address": "tcp://185.228.168.9",
+        "strategy": "ipv4_only",
+		"address_resolver": "local-dns",
         "detour": "TTAQI"
       },
       {
         "tag": "local-dns",
         "address": "local",
-        "strategy": "ipv4_only",
         "detour": "TTAQI"
       },
       {
@@ -72,12 +72,14 @@
         "rewrite_ttl": 20
       },
       {
-        "clash_mode": "direct",
-        "server": "direct-dns"
+        "outbound": "direct",
+        "server": "dns-direct",
+		"rewrite_ttl": 20
       },
       {
-        "clash_mode": "global",
-        "server": "remote-dns"
+        "outbound": "any",
+        "server": "dns-direct",
+		"rewrite_ttl": 20
       }
     ],
     "final": "remote-dns",
@@ -88,6 +90,14 @@
     "independent_cache": true
   },
   "inbounds": [
+    {
+	  "tag": "direct-in",
+	  "type": "direct",
+	  "listen": "0.0.0.0",
+	  "listen_port": 6450,
+	  "override_address": "8.8.8.8",
+	  "override_port": 53
+    },
     {
 	  "tag": "tun-in",
 	  "type": "tun",
@@ -158,16 +168,15 @@
     "final": "QQOLI",
     "rules": [
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "protocol": "dns"
-          },
-          {
-            "port": 53
-          }
-        ],
+        "port": 53,
+        "outbound": "NNAQI"
+      },
+      {
+        "protocol": "dns",
+        "outbound": "NNAQI"
+      },
+      {
+        "inbound": "direct-in",
         "outbound": "NNAQI"
       },
       {

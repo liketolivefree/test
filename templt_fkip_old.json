@@ -55,6 +55,9 @@
     "rules": [
       {
         "rule_set": [
+          "geosite-phishing",
+          "geosite-malware",
+          "geosite-cryptominers",
           "geosite-category-ads-all"
         ],
         "server": "block-dns",
@@ -76,6 +79,14 @@
         "rewrite_ttl": 20
       },
       {
+        "rule_set": [
+        "geosite-ir"
+        ],
+        "server": "direct-dns",
+        "disable_cache": false,
+        "rewrite_ttl": 20
+      },
+      {
         "clash_mode": "direct",
         "server": "direct-dns"
       },
@@ -84,7 +95,7 @@
         "mode": "and",
         "rules": [
           {
-            "domain_suffix": ".ir",
+            "rule_set": "geosite-ir",
             "invert": true
           },
           {
@@ -140,8 +151,8 @@
 	{
       "tag": "mixed-in",
 	  "type": "mixed",
-	  "listen": "0.0.0.0",
-	  "listen_port": 2080,
+	  "listen": "127.0.0.1",
+	  "listen_port": 7890,
       "sniff": true
     }
   ],
@@ -212,7 +223,12 @@
       },
       {
         "rule_set": [
-          "geosite-category-ads-all"
+          "geosite-category-ads-all",
+          "geosite-cryptominers",
+          "geoip-phishing",
+          "geosite-phishing",
+          "geoip-malware",
+          "geosite-malware"
         ],
         "outbound": "MMAQI"
       },
@@ -242,6 +258,12 @@
       },
       {
         "rule_set": [
+          "geosite-ir"
+        ],
+        "outbound": "TTAQI"
+      },
+      {
+        "rule_set": [
           "geoip-ir"
         ],
         "outbound": "TTAQI"
@@ -257,24 +279,66 @@
 	],
     "rule_set": [
       {
+        "tag": "geosite-ir",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "TTAQI"
+      },
+      {
         "tag": "geosite-private",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-private.srs",
         "download_detour": "TTAQI"
       },
       {
         "tag": "geoip-ir",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/ir.srs",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
         "download_detour": "TTAQI"
       },
       {
         "tag": "geosite-category-ads-all",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ads-all.srs",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ads-all.srs",
+        "download_detour": "TTAQI"
+      },
+      {
+        "tag": "geosite-cryptominers",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-cryptominers.srs",
+        "download_detour": "TTAQI"
+      },
+      {
+        "tag": "geosite-malware",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-malware.srs",
+        "download_detour": "TTAQI"
+      },
+      {
+        "tag": "geosite-phishing",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-phishing.srs",
+        "download_detour": "TTAQI"
+      },
+      {
+        "tag": "geoip-malware",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-malware.srs",
+        "download_detour": "TTAQI"
+      },
+      {
+        "tag": "geoip-phishing",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-phishing.srs",
         "download_detour": "TTAQI"
       }
     ]

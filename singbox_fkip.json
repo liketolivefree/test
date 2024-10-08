@@ -11,7 +11,7 @@
     ],
     "rules": [
       {"domain_suffix": ".ir","server": "direct-dns"},
-      {"type":"logical","mode":"and","rules":[{"rule_set":"geosite-ir","invert":true},{"query_type":["A","AAAA"]}],"server":"fakeip-dns"}
+      {"query_type": ["A","AAAA"],"server": "fakeip-dns"}
     ],
     "fakeip": {"enabled": true,"inet4_range": "198.18.0.0/15","inet6_range": "fc00::/18"},
     "final": "remote-dns",

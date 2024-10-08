@@ -25,22 +25,17 @@
   },
   "dns": {
     "servers": [
-      {
-        "tag": "remote-dns",
-        "address": "tcp://185.228.168.10",
-		"address_resolver": "direct-dns",
-		"strategy": "ipv4_only"
-      },
+      {"tag":"remote-dns","address":"https://1.1.1.1/dns-query","strategy":"prefer_ipv4","detour":"TTAQI"}
       {
         "tag": "direct-dns",
-        "address": "tcp://185.228.168.9",
-        "strategy": "ipv4_only",
-		"address_resolver": "local-dns",
+        "address": "https://8.8.8.8/dns-query",
+        "strategy": "prefer_ipv4",
         "detour": "TTAQI"
       },
       {
         "tag": "local-dns",
         "address": "local",
+        "strategy": "ipv4_only",
         "detour": "TTAQI"
       },
       {
@@ -51,6 +46,9 @@
     "rules": [
       {
         "rule_set": [
+          "geosite-phishing",
+          "geosite-malware",
+          "geosite-cryptominers",
           "geosite-category-ads-all"
         ],
         "server": "block-dns",
@@ -72,14 +70,20 @@
         "rewrite_ttl": 20
       },
       {
-        "outbound": "direct",
-        "server": "dns-direct",
-		"rewrite_ttl": 20
+        "rule_set": [
+        "geosite-ir"
+        ],
+        "server": "direct-dns",
+        "disable_cache": false,
+        "rewrite_ttl": 20
       },
       {
-        "outbound": "any",
-        "server": "dns-direct",
-		"rewrite_ttl": 20
+        "clash_mode": "direct",
+        "server": "direct-dns"
+      },
+      {
+        "clash_mode": "global",
+        "server": "remote-dns"
       }
     ],
     "final": "remote-dns",
@@ -90,14 +94,6 @@
     "independent_cache": true
   },
   "inbounds": [
-    {
-	  "tag": "direct-in",
-	  "type": "direct",
-	  "listen": "0.0.0.0",
-	  "listen_port": 6450,
-	  "override_address": "8.8.8.8",
-	  "override_port": 53
-    },
     {
 	  "tag": "tun-in",
 	  "type": "tun",
@@ -123,8 +119,8 @@
 	{
       "tag": "mixed-in",
 	  "type": "mixed",
-	  "listen": "0.0.0.0",
-	  "listen_port": 2080,
+	  "listen": "127.0.0.1",
+	  "listen_port": 7890,
       "sniff": true
     }
   ],
@@ -168,15 +164,16 @@
     "final": "QQOLI",
     "rules": [
       {
-        "port": 53,
-        "outbound": "NNAQI"
-      },
-      {
-        "protocol": "dns",
-        "outbound": "NNAQI"
-      },
-      {
-        "inbound": "direct-in",
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
         "outbound": "NNAQI"
       },
       {
@@ -192,9 +189,14 @@
         ],
         "outbound": "MMAQI"
       },
-        {
+      {
         "rule_set": [
-          "geosite-category-ads-all"
+          "geosite-category-ads-all",
+          "geosite-cryptominers",
+          "geoip-phishing",
+          "geosite-phishing",
+          "geoip-malware",
+          "geosite-malware"
         ],
         "outbound": "MMAQI"
       },
@@ -224,6 +226,12 @@
       },
       {
         "rule_set": [
+          "geosite-ir"
+        ],
+        "outbound": "TTAQI"
+      },
+      {
+        "rule_set": [
           "geoip-ir"
         ],
         "outbound": "TTAQI"
@@ -239,24 +247,66 @@
 	],
     "rule_set": [
       {
+        "tag": "geosite-ir",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "TTAQI"
+      },
+      {
         "tag": "geosite-private",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-private.srs",
         "download_detour": "TTAQI"
       },
       {
         "tag": "geoip-ir",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/ir.srs",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
         "download_detour": "TTAQI"
       },
       {
         "tag": "geosite-category-ads-all",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ads-all.srs",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ads-all.srs",
+        "download_detour": "TTAQI"
+      },
+      {
+        "tag": "geosite-cryptominers",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-cryptominers.srs",
+        "download_detour": "TTAQI"
+      },
+      {
+        "tag": "geosite-malware",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-malware.srs",
+        "download_detour": "TTAQI"
+      },
+      {
+        "tag": "geosite-phishing",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-phishing.srs",
+        "download_detour": "TTAQI"
+      },
+      {
+        "tag": "geoip-malware",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-malware.srs",
+        "download_detour": "TTAQI"
+      },
+      {
+        "tag": "geoip-phishing",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-phishing.srs",
         "download_detour": "TTAQI"
       }
     ]

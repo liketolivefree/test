@@ -67,11 +67,6 @@
         "method": "drop"
       },
       {
-        "rule_set": "aff",
-        "action": "reject",
-        "method": "drop"
-      },
-      {
         "domain_suffix": [
           ".githubusercontent.com",
           ".githubassets.com",
@@ -94,21 +89,9 @@
         "strategy": "prefer_ipv4"
       },
       {
-        "rule_set": "xal",
-        "action": "route",
-        "server": "direct-dns",
-        "strategy": "prefer_ipv4"
-      },
-      {
         "domain_suffix": ".ir",
         "action": "route",
         "server": "direct-dns",
-        "strategy": "prefer_ipv4"
-      },
-      {
-        "rule_set": "oki",
-        "action": "route",
-        "server": "remote-dns",
         "strategy": "prefer_ipv4"
       },
       {
@@ -3723,16 +3706,6 @@
         "method": "drop"
       },
       {
-        "rule_set": "aff",
-        "action": "reject",
-        "method": "drop"
-      },
-      {
-        "rule_set": "yun",
-        "action": "reject",
-        "method": "drop"
-      },
-      {
         "ip_cidr": [
           "0.0.0.0/32",
           "10.10.34.0/24",
@@ -3761,29 +3734,9 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "xal",
-        "action": "route",
-        "outbound": "direct"
-      },
-      {
-        "rule_set": "loo",
-        "action": "route",
-        "outbound": "direct"
-      },
-      {
         "clash_mode": "direct",
         "action": "route",
         "outbound": "direct"
-      },
-      {
-        "rule_set": "oki",
-        "action": "route",
-        "outbound": "qqoli"
-      },
-      {
-        "rule_set": "doki",
-        "action": "route",
-        "outbound": "qqoli"
       },
       {
         "clash_mode": "global",
@@ -3791,55 +3744,6 @@
         "outbound": "qqoli"
       }
     ],
-    "rule_set": [
-      {
-        "tag": "aff",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/aff.json",
-        "download_detour": "qqoli",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "yun",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/yun.json",
-        "download_detour": "qqoli",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "xal",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/xal.json",
-        "download_detour": "qqoli",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "loo",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/loo.json",
-        "download_detour": "qqoli",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "oki",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/oki.json",
-        "download_detour": "qqoli",
-        "update_interval": "3d"
-      },
-      {
-        "tag": "doki",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/doki.json",
-        "download_detour": "qqoli",
-        "update_interval": "3d"
-      }
-    ]
+    "rule_set": []
   }
 }

@@ -3797,7 +3797,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/liketolivefree/test/main/aff.json",
-        "download_detour": "direct",
+        "download_detour": "qqoli",
         "update_interval": "3d"
       },
       {
@@ -3805,7 +3805,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/liketolivefree/test/main/yun.json",
-        "download_detour": "direct",
+        "download_detour": "qqoli",
         "update_interval": "3d"
       },
       {
@@ -3813,7 +3813,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/liketolivefree/test/main/xal.json",
-        "download_detour": "direct",
+        "download_detour": "qqoli",
         "update_interval": "3d"
       },
       {
@@ -3821,7 +3821,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/liketolivefree/test/main/loo.json",
-        "download_detour": "direct",
+        "download_detour": "qqoli",
         "update_interval": "3d"
       },
       {
@@ -3829,7 +3829,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/liketolivefree/test/main/oki.json",
-        "download_detour": "direct",
+        "download_detour": "qqoli",
         "update_interval": "3d"
       },
       {
@@ -3837,7 +3837,7 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/liketolivefree/test/main/doki.json",
-        "download_detour": "direct",
+        "download_detour": "qqoli",
         "update_interval": "3d"
       }
     ]

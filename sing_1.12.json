@@ -32,22 +32,19 @@
         "tag": "direct-dns",
         "type": "udp",
         "server": "8.8.8.8",
-        "detour": "direct",
-        "server_port": 53
+        "detour": "direct"
       },
       {
         "tag": "remote-dns",
         "type": "https",
         "server": "1.1.1.1",
-        "detour": "qqoli",
-        "server_port": 443
+        "detour": "qqoli"
       },
       {
         "tag": "backup-dns",
         "type": "https",
         "server": "94.140.14.14",
-        "detour": "qqoli",
-        "server_port": 443
+        "detour": "qqoli"
       }
     ],
     "rules": [
@@ -73,20 +70,22 @@
         "no_drop": false
       },
       {
-        "rule_set": "aff",
+        "rule_set": "aff1",
         "action": "reject",
         "method": "default",
         "no_drop": false
       },
       {
-        "clash_mode": "Direct",
-        "action": "route",
-        "server": "direct-dns"
+        "rule_set": "aff2",
+        "action": "reject",
+        "method": "default",
+        "no_drop": false
       },
       {
-        "clash_mode": "Global",
-        "action": "route",
-        "server": "backup-dns"
+        "rule_set": "yun",
+        "action": "reject",
+        "method": "default",
+        "no_drop": false
       },
       {
         "domain_suffix": ".ir",
@@ -97,6 +96,21 @@
         "rule_set": "xal",
         "action": "route",
         "server": "direct-dns"
+      },
+      {
+        "rule_set": "loo",
+        "action": "route",
+        "server": "direct-dns"
+      },
+      {
+        "clash_mode": "Direct",
+        "action": "route",
+        "server": "direct-dns"
+      },
+      {
+        "clash_mode": "Global",
+        "action": "route",
+        "server": "backup-dns"
       },
       {
         "rule_set": "oki",
@@ -3781,7 +3795,19 @@
         "no_drop": false
       },
       {
-        "rule_set": "aff",
+        "rule_set": "aff1",
+        "action": "reject",
+        "method": "default",
+        "no_drop": false
+      },
+      {
+        "rule_set": "aff2",
+        "action": "reject",
+        "method": "default",
+        "no_drop": false
+      },
+      {
+        "rule_set": "yun",
         "action": "reject",
         "method": "default",
         "no_drop": false
@@ -3797,17 +3823,22 @@
         "outbound": "direct"
       },
       {
+        "rule_set": "xal",
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "loo",
+        "action": "route",
+        "outbound": "direct"
+      },
+      {
         "clash_mode": "Direct",
         "action": "route",
         "outbound": "direct"
       },
       {
         "rule_set": "oki",
-        "action": "route",
-        "outbound": "direct"
-      },
-      {
-        "rule_set": "xal",
         "action": "route",
         "outbound": "qqoli"
       },
@@ -3819,10 +3850,24 @@
     ],
     "rule_set": [
       {
-        "tag": "aff",
+        "tag": "aff1",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/aff.json",
+        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/aff1.json",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "aff2",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ads-all.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "loo",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
         "download_detour": "direct"
       },
       {
@@ -3836,7 +3881,14 @@
         "tag": "xal",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/xal.json",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "yun",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-malware.srs",
         "download_detour": "direct"
       }
     ]

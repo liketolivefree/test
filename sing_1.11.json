@@ -85,14 +85,6 @@
         "disable_cache": false
       },
       {
-        "domain_suffix": [
-          ".githubusercontent.com",
-          ".githubassets.com"
-        ],
-        "server": "local-dns",
-        "disable_cache": false
-      },
-      {
         "clash_mode": "Direct",
         "server": "backup-dns",
         "disable_cache": false
@@ -3795,13 +3787,6 @@
         "action": "reject",
         "method": "default",
         "no_drop": false
-      },
-      {
-        "domain_suffix": [
-          ".githubusercontent.com",
-          ".githubassets.com"
-        ],
-        "outbound": "direct"
       },
       {
         "ip_is_private": true,

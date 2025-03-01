@@ -72,13 +72,7 @@
         "no_drop": false
       },
       {
-        "rule_set": "aff1",
-        "action": "reject",
-        "method": "default",
-        "no_drop": false
-      },
-      {
-        "rule_set": "aff2",
+        "rule_set": "aff",
         "action": "reject",
         "method": "default",
         "no_drop": false
@@ -88,16 +82,6 @@
         "action": "reject",
         "method": "default",
         "no_drop": false
-      },
-      {
-        "clash_mode": "Direct",
-        "action": "route",
-        "server": "direct-dns"
-      },
-      {
-        "clash_mode": "Global",
-        "action": "route",
-        "server": "backup-dns"
       },
       {
         "domain_suffix": ".ir",
@@ -115,9 +99,14 @@
         "server": "direct-dns"
       },
       {
-        "rule_set": "oki",
+        "clash_mode": "Direct",
         "action": "route",
-        "server": "remote-dns"
+        "server": "direct-dns"
+      },
+      {
+        "clash_mode": "Global",
+        "action": "route",
+        "server": "backup-dns"
       }
     ],
     "independent_cache": true,
@@ -3794,13 +3783,7 @@
         "no_drop": false
       },
       {
-        "rule_set": "aff1",
-        "action": "reject",
-        "method": "default",
-        "no_drop": false
-      },
-      {
-        "rule_set": "aff2",
+        "rule_set": "aff",
         "action": "reject",
         "method": "default",
         "no_drop": false
@@ -3837,11 +3820,6 @@
         "outbound": "direct"
       },
       {
-        "rule_set": "oki",
-        "action": "route",
-        "outbound": "qqoli"
-      },
-      {
         "clash_mode": "Global",
         "action": "route",
         "outbound": "qqoli"
@@ -3849,46 +3827,32 @@
     ],
     "rule_set": [
       {
-        "tag": "aff1",
+        "tag": "aff",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/aff1.json",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "aff2",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ads-all.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ads-all.srs"
       },
       {
         "tag": "loo",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "oki",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/oki.json",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs"
       },
       {
         "tag": "xal",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs"
       },
       {
         "tag": "yun",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-malware.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "url": "https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-malware.srs"
       }
     ]
   }

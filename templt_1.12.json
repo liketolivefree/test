@@ -18,15 +18,15 @@
   "dns": {
     "servers": [
       {"tag":"local-dns","type":"local"},
-      {"tag":"direct-dns","type":"tls","server":"8.8.8.8","detour":"direct"},
-      {"tag":"remote-dns","type":"https","server":"1.1.1.1","detour":"qqoli"},
-      {"tag":"backup-dns","type":"https","server":"94.140.14.14","detour":"qqoli"}
+      {"tag":"direct-dns","type":"udp","server":"8.8.8.8","detour":"direct","server_port":53},
+      {"tag":"remote-dns","type":"https","server":"1.1.1.1","detour":"qqoli","server_port":443},
+      {"tag":"backup-dns","type":"https","server":"94.140.14.14","detour":"qqoli","server_port":443}
     ],
     "rules": [
       {"domain_suffix":[".xiaomi.com",".xiaomi.net",".miui.com",".mi.com"],"action":"reject","method":"default","no_drop":false},
       {"ip_cidr":["0.0.0.0/32","10.10.34.0/24","240.0.0.0/4"],"action":"reject","method":"default","no_drop":false},
       {"rule_set":"aff","action":"reject","method":"default","no_drop":false},
-      {"clash_mode":"Direct","action":"route","server":"backup-dns","strategy":"prefer_ipv4"},
+      {"clash_mode":"Direct","action":"route","server":"direct-dns","strategy":"prefer_ipv4"},
       {"clash_mode":"Global","action":"route","server":"backup-dns","strategy":"prefer_ipv4"},
       {"domain_suffix":".ir","action":"route","server":"direct-dns","strategy":"prefer_ipv4"},
       {"rule_set":"xal","action":"route","server":"direct-dns","strategy":"prefer_ipv4"},

@@ -30,28 +30,31 @@
         "strategy": "prefer_ipv4"
       },
       {
+        "tag": "direct-dns",
+        "address": "8.8.8.8",
+        "strategy": "prefer_ipv4",
+        "detour": "direct",
+        "server_port": 53
+      },
+      {
         "tag": "remote-dns",
         "address": "https://1.1.1.1/dns-query",
         "strategy": "prefer_ipv4",
-        "detour": "qqoli"
+        "detour": "qqoli",
+        "server_port": 443
       },
       {
         "tag": "backup-dns",
         "address": "https://94.140.14.14/dns-query",
         "strategy": "prefer_ipv4",
-        "detour": "qqoli"
-      },
-      {
-        "tag": "direct-dns",
-        "address": "8.8.8.8",
-        "strategy": "prefer_ipv4",
-        "detour": "direct"
+        "detour": "qqoli",
+        "server_port": 443
       }
     ],
     "rules": [
       {
         "outbound": "any",
-        "server": "backup-dns",
+        "server": "direct-dns",
         "disable_cache": false
       },
       {
@@ -84,7 +87,7 @@
       {
         "clash_mode": "Direct",
         "action": "route",
-        "server": "backup-dns",
+        "server": "direct-dns",
         "strategy": "prefer_ipv4"
       },
       {
@@ -156,7 +159,7 @@
       "type": "selector",
       "interrupt_exist_connections": false,
       "outbounds": [
-        "MMOBI",
+        "mmobi",
         "qo_008",
         "qo_012",
         "qo_017",
@@ -323,7 +326,7 @@
       ]
     },
     {
-      "tag": "MMOBI",
+      "tag": "mmobi",
       "type": "urltest",
       "url": "https://www.gstatic.com/generate_204",
       "interrupt_exist_connections": false,

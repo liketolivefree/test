@@ -110,11 +110,11 @@
       {"rule_set":"aff1","action":"reject","method":"default","no_drop":false},
       {"rule_set":"aff2","action":"reject","method":"default","no_drop":false},
       {"rule_set":"yun","action":"reject","method":"default","no_drop":false},
-      {"ip_is_private": true,"action":"route","outbound": "direct"},
+      {"ip_is_private":true,"action":"route","outbound":"direct"},
       {"domain_suffix":".ir","action":"route","outbound":"direct"},
-      {"clash_mode":"Direct","action":"route","outbound":"direct"},
       {"rule_set":"xal","action":"route","outbound":"direct"},
       {"rule_set":"loo","action":"route","outbound":"direct"},
+      {"clash_mode":"Direct","action":"route","outbound":"direct"},
       {"rule_set":"oki","action":"route","outbound":"qqoli"},
       {"clash_mode":"Global","action":"route","outbound":"qqoli"}
     ],

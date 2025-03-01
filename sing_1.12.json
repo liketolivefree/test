@@ -30,21 +30,24 @@
       },
       {
         "tag": "direct-dns",
-        "type": "tls",
+        "type": "udp",
         "server": "8.8.8.8",
-        "detour": "direct"
+        "detour": "direct",
+        "server_port": 53
       },
       {
         "tag": "remote-dns",
         "type": "https",
         "server": "1.1.1.1",
-        "detour": "qqoli"
+        "detour": "qqoli",
+        "server_port": 443
       },
       {
         "tag": "backup-dns",
         "type": "https",
         "server": "94.140.14.14",
-        "detour": "qqoli"
+        "detour": "qqoli",
+        "server_port": 443
       }
     ],
     "rules": [
@@ -78,7 +81,7 @@
       {
         "clash_mode": "Direct",
         "action": "route",
-        "server": "backup-dns",
+        "server": "direct-dns",
         "strategy": "prefer_ipv4"
       },
       {
@@ -3823,21 +3826,21 @@
         "tag": "aff",
         "type": "remote",
         "format": "binary",
-        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/test@main/aff.json",
+        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/aff.json",
         "download_detour": "direct"
       },
       {
         "tag": "oki",
         "type": "remote",
         "format": "binary",
-        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/test@main/oki.json",
+        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/oki.json",
         "download_detour": "direct"
       },
       {
         "tag": "xal",
         "type": "remote",
         "format": "binary",
-        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/test@main/xal.json",
+        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/xal.json",
         "download_detour": "direct"
       }
     ]

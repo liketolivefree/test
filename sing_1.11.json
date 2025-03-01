@@ -26,25 +26,21 @@
     "servers": [
       {
         "tag": "local-dns",
-        "address": "local",
-        "strategy": "prefer_ipv4"
+        "address": "local"
       },
       {
         "tag": "direct-dns",
         "address": "8.8.8.8",
-        "strategy": "prefer_ipv4",
         "detour": "direct"
       },
       {
         "tag": "remote-dns",
         "address": "https://1.1.1.1/dns-query",
-        "strategy": "prefer_ipv4",
         "detour": "qqoli"
       },
       {
         "tag": "backup-dns",
         "address": "https://94.140.14.14/dns-query",
-        "strategy": "prefer_ipv4",
         "detour": "qqoli"
       }
     ],
@@ -84,37 +80,33 @@
       {
         "clash_mode": "Direct",
         "action": "route",
-        "server": "direct-dns",
-        "strategy": "prefer_ipv4"
+        "server": "direct-dns"
       },
       {
         "clash_mode": "Global",
         "action": "route",
-        "server": "backup-dns",
-        "strategy": "prefer_ipv4"
+        "server": "backup-dns"
       },
       {
         "domain_suffix": ".ir",
         "action": "route",
-        "server": "direct-dns",
-        "strategy": "prefer_ipv4"
+        "server": "direct-dns"
       },
       {
         "rule_set": "xal",
         "action": "route",
-        "server": "direct-dns",
-        "strategy": "prefer_ipv4"
+        "server": "direct-dns"
       },
       {
         "rule_set": "oki",
         "action": "route",
-        "server": "remote-dns",
-        "strategy": "prefer_ipv4"
+        "server": "remote-dns"
       }
     ],
     "independent_cache": true,
     "disable_cache": false,
     "disable_expire": false,
+    "strategy": "prefer_ipv4",
     "final": "remote-dns"
   },
   "ntp": {

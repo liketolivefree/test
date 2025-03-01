@@ -26,15 +26,16 @@
       {"domain_suffix":[".xiaomi.com",".xiaomi.net",".miui.com",".mi.com"],"action":"reject","method":"default","no_drop":false},
       {"ip_cidr":["0.0.0.0/32","10.10.34.0/24","240.0.0.0/4"],"action":"reject","method":"default","no_drop":false},
       {"rule_set":"aff","action":"reject","method":"default","no_drop":false},
-      {"clash_mode":"Direct","action":"route","server":"direct-dns","strategy":"prefer_ipv4"},
-      {"clash_mode":"Global","action":"route","server":"backup-dns","strategy":"prefer_ipv4"},
-      {"domain_suffix":".ir","action":"route","server":"direct-dns","strategy":"prefer_ipv4"},
-      {"rule_set":"xal","action":"route","server":"direct-dns","strategy":"prefer_ipv4"},
-      {"rule_set":"oki","action":"route","server":"remote-dns","strategy":"prefer_ipv4"}
+      {"clash_mode":"Direct","action":"route","server":"direct-dns"},
+      {"clash_mode":"Global","action":"route","server":"backup-dns"},
+      {"domain_suffix":".ir","action":"route","server":"direct-dns"},
+      {"rule_set":"xal","action":"route","server":"direct-dns"},
+      {"rule_set":"oki","action":"route","server":"remote-dns"}
     ],
     "independent_cache": true,
     "disable_cache": false,
     "disable_expire": false,
+    "strategy":"prefer_ipv4",
     "final": "remote-dns"
   },
   "ntp": {

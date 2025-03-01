@@ -18,16 +18,16 @@
   "dns": {
     "servers": [
       {"tag":"local-dns","address":"local","strategy":"prefer_ipv4"},
-      {"tag":"remote-dns","address":"https://1.1.1.1/dns-query","strategy":"prefer_ipv4","detour":"qqoli"},
-      {"tag":"backup-dns","address":"https://94.140.14.14/dns-query","strategy":"prefer_ipv4","detour":"qqoli"},
-      {"tag":"direct-dns","address":"8.8.8.8","strategy":"prefer_ipv4","detour":"direct"}
+      {"tag":"direct-dns","address":"8.8.8.8","strategy":"prefer_ipv4","detour":"direct","server_port":53},      
+      {"tag":"remote-dns","address":"https://1.1.1.1/dns-query","strategy":"prefer_ipv4","detour":"qqoli","server_port":443},
+      {"tag":"backup-dns","address":"https://94.140.14.14/dns-query","strategy":"prefer_ipv4","detour":"qqoli","server_port":443}
     ],
     "rules": [
-      {"outbound":"any","server":"backup-dns","disable_cache":false},
+      {"outbound":"any","server":"direct-dns","disable_cache":false},
       {"domain_suffix":[".xiaomi.com",".xiaomi.net",".miui.com",".mi.com"],"action":"reject","method":"default","no_drop":false},
       {"ip_cidr":["0.0.0.0/32","10.10.34.0/24","240.0.0.0/4"],"action":"reject","method":"default","no_drop":false},
       {"rule_set":"aff","action":"reject","method":"default","no_drop":false},
-      {"clash_mode":"Direct","action":"route","server":"backup-dns","strategy":"prefer_ipv4"},
+      {"clash_mode":"Direct","action":"route","server":"direct-dns","strategy":"prefer_ipv4"},
       {"clash_mode":"Global","action":"route","server":"backup-dns","strategy":"prefer_ipv4"},
       {"domain_suffix":".ir","action":"route","server":"direct-dns","strategy":"prefer_ipv4"},
       {"rule_set":"xal","action":"route","server":"direct-dns","strategy":"prefer_ipv4"},
@@ -70,10 +70,10 @@
       "tag":"qqoli",
       "type":"selector",
       "interrupt_exist_connections": false,
-      "outbounds":["MMOBI","{all}"]
+      "outbounds":["mmobi","{all}"]
     },
    {
-      "tag":"MMOBI",
+      "tag":"mmobi",
       "type":"urltest",
       "url": "https://www.gstatic.com/generate_204",
       "interrupt_exist_connections": false,

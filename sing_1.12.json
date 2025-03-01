@@ -73,15 +73,6 @@
         "no_drop": false
       },
       {
-        "domain_suffix": [
-          ".githubusercontent.com",
-          ".githubassets.com"
-        ],
-        "action": "route",
-        "server": "local-dns",
-        "strategy": "prefer_ipv4"
-      },
-      {
         "clash_mode": "Direct",
         "action": "route",
         "server": "backup-dns",
@@ -107,18 +98,6 @@
       },
       {
         "rule_set": "oki",
-        "action": "route",
-        "server": "remote-dns",
-        "strategy": "prefer_ipv4"
-      },
-      {
-        "inbound": "tun-in",
-        "action": "route",
-        "server": "remote-dns",
-        "strategy": "prefer_ipv4"
-      },
-      {
-        "inbound": "mixed-in",
         "action": "route",
         "server": "remote-dns",
         "strategy": "prefer_ipv4"
@@ -3801,14 +3780,6 @@
         "action": "reject",
         "method": "default",
         "no_drop": false
-      },
-      {
-        "domain_suffix": [
-          ".githubusercontent.com",
-          ".githubassets.com"
-        ],
-        "action": "route",
-        "outbound": "direct"
       },
       {
         "ip_is_private": true,

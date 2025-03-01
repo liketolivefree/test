@@ -18,23 +18,20 @@
   "dns": {
     "servers": [
       {"tag":"local-dns","address":"local","strategy":"prefer_ipv4"},
-      {"tag":"remote-dns","address":"https://1.1.1.1/dns-query","strategy":"prefer_ipv4"},
-      {"tag":"backup-dns","address":"https://94.140.14.14/dns-query","strategy":"prefer_ipv4"},
-      {"tag":"direct-dns","address":"8.8.8.8","strategy":"prefer_ipv4"},
-      {"tag":"block-dns","address":"rcode://refused"}
+      {"tag":"remote-dns","address":"https://1.1.1.1/dns-query","strategy":"prefer_ipv4","detour":"qqoli"},
+      {"tag":"backup-dns","address":"https://94.140.14.14/dns-query","strategy":"prefer_ipv4","detour":"qqoli"},
+      {"tag":"direct-dns","address":"8.8.8.8","strategy":"prefer_ipv4","detour":"direct"}
     ],
     "rules": [
-      {"domain_suffix":[".xiaomi.com",".xiaomi.net",".miui.com",".mi.com"],"server":"block-dns","disable_cache":true},
-      {"ip_cidr":["0.0.0.0/32","10.10.34.0/24","240.0.0.0/4"],"server":"block-dns","disable_cache":true},
-      {"rule_set":"aff","server":"block-dns","disable_cache":true},
-      {"outbound":"direct","server":"local-dns","disable_cache":true},
       {"outbound":"any","server":"backup-dns","disable_cache":false},
-      {"domain_suffix":[".githubusercontent.com",".githubassets.com"],"server":"local-dns","disable_cache":false},
-      {"clash_mode":"Direct","server":"backup-dns","disable_cache":false},
-      {"clash_mode":"Global","server":"backup-dns","disable_cache":false},
-      {"domain_suffix":".ir","server":"direct-dns","disable_cache":false},
-      {"rule_set":"xal","server":"direct-dns","disable_cache":true},
-      {"rule_set":"oki","server":"remote-dns","disable_cache":true}
+      {"domain_suffix":[".xiaomi.com",".xiaomi.net",".miui.com",".mi.com"],"action":"reject","method":"default","no_drop":false},
+      {"ip_cidr":["0.0.0.0/32","10.10.34.0/24","240.0.0.0/4"],"action":"reject","method":"default","no_drop":false},
+      {"rule_set":"aff","action":"reject","method":"default","no_drop":false},
+      {"clash_mode":"Direct","action":"route","server":"backup-dns","strategy":"prefer_ipv4"},
+      {"clash_mode":"Global","action":"route","server":"backup-dns","strategy":"prefer_ipv4"},
+      {"domain_suffix":".ir","action":"route","server":"direct-dns","strategy":"prefer_ipv4"},
+      {"rule_set":"xal","action":"route","server":"direct-dns","strategy":"prefer_ipv4"},
+      {"rule_set":"oki","action":"route","server":"remote-dns","strategy":"prefer_ipv4"}
     ],
     "independent_cache": true,
     "disable_cache": false,
@@ -107,7 +104,6 @@
       {"domain_suffix":[".xiaomi.com",".xiaomi.net",".miui.com",".mi.com"],"action":"reject","method":"default","no_drop":false},
       {"ip_cidr":["0.0.0.0/32","10.10.34.0/24","240.0.0.0/4"],"action":"reject","method":"default","no_drop":false},
       {"rule_set":"aff","action":"reject","method":"default","no_drop":false},
-      {"domain_suffix":[".githubusercontent.com",".githubassets.com"],"outbound":"direct"},
       {"ip_is_private": true,"outbound": "direct"},
       {"domain_suffix":".ir","outbound":"direct"},
       {"clash_mode":"Direct","outbound":"direct"},

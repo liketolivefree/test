@@ -3823,22 +3823,22 @@
         "tag": "aff",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/aff.json",
-        "download_detour": "qqoli"
+        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/test@main/aff.json",
+        "download_detour": "direct"
       },
       {
         "tag": "oki",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/oki.json",
-        "download_detour": "qqoli"
+        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/test@main/oki.json",
+        "download_detour": "direct"
       },
       {
         "tag": "xal",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/liketolivefree/test/main/xal.json",
-        "download_detour": "qqoli"
+        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/test@main/xal.json",
+        "download_detour": "direct"
       }
     ]
   }

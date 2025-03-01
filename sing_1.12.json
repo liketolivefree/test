@@ -31,17 +31,20 @@
       {
         "tag": "direct-dns",
         "type": "tls",
-        "server": "8.8.8.8"
+        "server": "8.8.8.8",
+        "detour":"direct"
       },
       {
         "tag": "remote-dns",
         "type": "https",
-        "server": "1.1.1.1"
+        "server": "1.1.1.1",
+        "detour":"qqoli"
       },
       {
         "tag": "backup-dns",
         "type": "https",
-        "server": "94.140.14.14"
+        "server": "94.140.14.14",
+        "detour":"qqoli"
       }
     ],
     "rules": [
@@ -3818,21 +3821,21 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/liketolivefree/test/main/aff.json",
-        "download_detour": "direct"
+        "download_detour": "qqoli"
       },
       {
         "tag": "oki",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/liketolivefree/test/main/oki.json",
-        "download_detour": "direct"
+        "download_detour": "qqoli"
       },
       {
         "tag": "xal",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/liketolivefree/test/main/xal.json",
-        "download_detour": "direct"
+        "download_detour": "qqoli"
       }
     ]
   }

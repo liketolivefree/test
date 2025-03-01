@@ -32,19 +32,19 @@
         "tag": "direct-dns",
         "type": "tls",
         "server": "8.8.8.8",
-        "detour":"direct"
+        "detour": "direct"
       },
       {
         "tag": "remote-dns",
         "type": "https",
         "server": "1.1.1.1",
-        "detour":"qqoli"
+        "detour": "qqoli"
       },
       {
         "tag": "backup-dns",
         "type": "https",
         "server": "94.140.14.14",
-        "detour":"qqoli"
+        "detour": "qqoli"
       }
     ],
     "rules": [
@@ -3664,6 +3664,9 @@
     "auto_detect_interface": true,
     "override_android_vpn": true,
     "final": "qqoli",
+    "default_domain_resolver": {
+      "server": "remote-dns"
+    },
     "rules": [
       {
         "action": "sniff",

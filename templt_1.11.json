@@ -26,11 +26,14 @@
       {"outbound":"any","server":"direct-dns","disable_cache":false},
       {"domain_suffix":[".xiaomi.com",".xiaomi.net",".miui.com",".mi.com"],"action":"reject","method":"default","no_drop":false},
       {"ip_cidr":["0.0.0.0/32","10.10.34.0/24","240.0.0.0/4"],"action":"reject","method":"default","no_drop":false},
-      {"rule_set":"aff","action":"reject","method":"default","no_drop":false},
+      {"rule_set":"aff1","action":"reject","method":"default","no_drop":false},
+      {"rule_set":"aff2","action":"reject","method":"default","no_drop":false},
+      {"rule_set":"yun","action":"reject","method":"default","no_drop":false},
       {"clash_mode":"Direct","action":"route","server":"direct-dns"},
       {"clash_mode":"Global","action":"route","server":"backup-dns"},
       {"domain_suffix":".ir","action":"route","server":"direct-dns"},
       {"rule_set":"xal","action":"route","server":"direct-dns"},
+      {"rule_set":"loo","action":"route","server":"direct-dns"},
       {"rule_set":"oki","action":"route","server":"remote-dns"}
     ],
     "independent_cache": true,
@@ -104,22 +107,39 @@
       {"type":"logical","mode":"and","rules":[{"network":"udp"},{"port":443}],"action":"reject","method":"default","no_drop":false},
       {"domain_suffix":[".xiaomi.com",".xiaomi.net",".miui.com",".mi.com"],"action":"reject","method":"default","no_drop":false},
       {"ip_cidr":["0.0.0.0/32","10.10.34.0/24","240.0.0.0/4"],"action":"reject","method":"default","no_drop":false},
-      {"rule_set":"aff","action":"reject","method":"default","no_drop":false},
-      {"ip_is_private": true,"outbound": "direct"},
-      {"domain_suffix":".ir","outbound":"direct"},
-      {"clash_mode":"Direct","outbound":"direct"},
-      {"rule_set":"oki","outbound":"direct"},
-      {"rule_set":"xal","outbound":"qqoli"},
-      {"clash_mode":"Global","outbound":"qqoli"}
+      {"rule_set":"aff1","action":"reject","method":"default","no_drop":false},
+      {"rule_set":"aff2","action":"reject","method":"default","no_drop":false},
+      {"rule_set":"yun","action":"reject","method":"default","no_drop":false},
+      {"ip_is_private": true,"action":"route","outbound": "direct"},
+      {"domain_suffix":".ir","action":"route","outbound":"direct"},
+      {"clash_mode":"Direct","action":"route","outbound":"direct"},
+      {"rule_set":"xal","action":"route","outbound":"direct"},
+      {"rule_set":"loo","action":"route","outbound":"direct"},
+      {"rule_set":"oki","action":"route","outbound":"qqoli"},
+      {"clash_mode":"Global","action":"route","outbound":"qqoli"}
     ],
     "rule_set": [
       {
-        "tag":"aff",
+        "tag":"aff1",
         "type":"remote",
         "format":"binary",
-        "url":"https://raw.githubusercontent.com/liketolivefree/test/main/aff.json",
+        "url":"https://raw.githubusercontent.com/liketolivefree/test/main/aff1.json",
         "download_detour":"direct"
       },
+      {
+        "tag":"aff2",
+        "type":"remote",
+        "format":"binary",
+        "url":"https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-category-ads-all.srs",
+        "download_detour":"direct"
+      }, 
+      {
+        "tag":"loo",
+        "type":"remote",
+        "format":"binary",
+        "url":"https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-ir.srs",
+        "download_detour":"direct"
+      },       
       {
         "tag":"oki",
         "type":"remote",
@@ -131,7 +151,14 @@
         "tag":"xal",
         "type":"remote",
         "format":"binary",
-        "url":"https://raw.githubusercontent.com/liketolivefree/test/main/xal.json",
+        "url":"https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geosite-ir.srs",
+        "download_detour":"direct"
+      },      
+      {
+        "tag":"yun",
+        "type":"remote",
+        "format":"binary",
+        "url":"https://raw.githubusercontent.com/Chocolate4U/Iran-sing-box-rules/rule-set/geoip-malware.srs",
         "download_detour":"direct"
       }
     ]

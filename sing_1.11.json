@@ -62,22 +62,7 @@
         "no_drop": false
       },
       {
-        "ip_cidr": [
-          "10.10.34.0/24",
-          "240.0.0.0/4"
-        ],
-        "action": "reject",
-        "method": "default",
-        "no_drop": false
-      },
-      {
         "rule_set": "aff",
-        "action": "reject",
-        "method": "default",
-        "no_drop": false
-      },
-      {
-        "rule_set": "yun",
         "action": "reject",
         "method": "default",
         "no_drop": false
@@ -91,21 +76,6 @@
         "rule_set": "xal",
         "action": "route",
         "server": "direct-dns"
-      },
-      {
-        "rule_set": "loo",
-        "action": "route",
-        "server": "direct-dns"
-      },
-      {
-        "clash_mode": "Direct",
-        "action": "route",
-        "server": "direct-dns"
-      },
-      {
-        "clash_mode": "Global",
-        "action": "route",
-        "server": "backup-dns"
       }
     ],
     "independent_cache": true,

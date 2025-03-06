@@ -1,13 +1,14 @@
 {
   "log": {
-    "level": "trace",
+    "level": "info",
     "timestamp": true
   },
   "dns": {
     "servers": [
       {
         "address": "local",
-        "tag": "local-dns"
+        "tag": "local-dns",
+        "detour": "direct"
       },
       {
         "address": "https://8.8.8.8/dns-query",
@@ -18,48 +19,39 @@
         "address": "https://1.1.1.1/dns-query",
         "tag": "remote-dns",
         "detour": "qqoli"
-      },
-      {
-        "address": "https://94.140.14.14/dns-query",
-        "tag": "backup-dns",
-        "detour": "qqoli"
       }
     ],
     "rules": [
       {
-        "action": "route",
-        "server": "local",
+        "server": "local-dns",
         "outbound": "any",
-        "disable_cache": true
+        "disable_cache": false
       },
       {
         "action": "reject",
         "method": "default",
         "no_drop": false,
-        "rule_set": "aff",
-        "disable_cache": true
+        "rule_set": "aff"
       },
       {
         "action": "route",
         "server": "direct-dns",
-        "domain_suffix": ".ir",
-        "disable_cache": false
+        "domain_suffix": ".ir"
       },
       {
         "action": "route",
         "server": "direct-dns",
-        "rule_set": "xal",
-        "disable_cache": false
+        "rule_set": "xal"
       },
       {
         "action": "route",
         "server": "remote-dns",
-        "rule_set": "oki",
-        "disable_cache": false
+        "rule_set": "oki"
       }
     ],
+    "final": "remote-dns",
     "strategy": "prefer_ipv4",
-    "final": "backup-dns"
+    "disable_cache": false
   },
   "ntp": {
     "enabled": true,
@@ -2250,13 +2242,11 @@
       {
         "action": "resolve",
         "strategy": "prefer_ipv4",
-        "server": "remote-dns",
         "inbound": "tun-in"
       },
       {
         "action": "resolve",
         "strategy": "prefer_ipv4",
-        "server": "remote-dns",
         "inbound": "mixed-in"
       },
       {

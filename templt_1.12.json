@@ -11,7 +11,6 @@
       {"type":"https","tag":"remote-dns","server":"9.9.9.9"}
     ],
     "rules":[
-      {"action":"reject","method":"default","no_drop":false,"domain_suffix":[".xiaomi.com",".xiaomi.net",".miui.com",".mi.com","windowsupdate.com","windows.net","windows.com","footprintdns.com","office.com","msedge.net","a-msedge.net","skype.com","xbox.com","xboxlive.com","msftauth.net","msauth.net"]},
       {"action":"reject","method":"default","no_drop":false,"rule_set":"aff"},
       {"action":"route","server":"direct-dns","domain_suffix":".ir"},
       {"action":"route","server":"direct-dns","rule_set":["xal","loo"]},
@@ -59,7 +58,6 @@
       {"action":"reject","method":"default","no_drop":false,"protocol":"stun"},
       {"action":"reject","method":"default","no_drop":false,"ip_cidr":["224.0.0.0/3","10.10.34.0/24"]},
       {"action":"reject","method":"default","no_drop":false,"source_ip_cidr":["224.0.0.0/3","10.10.34.0/24"]},
-      {"action":"reject","method":"default","no_drop":false,"domain_suffix":[".xiaomi.com",".xiaomi.net",".miui.com",".mi.com","windowsupdate.com","windows.net","windows.com","footprintdns.com","office.com","msedge.net","a-msedge.net","skype.com","xbox.com","xboxlive.com","msftauth.net","msauth.net"]},
       {"action":"reject","method":"default","no_drop":false,"type":"logical","mode":"and","rules":[{"network":"tcp"},{"port":853}]},
       {"action":"reject","method":"default","no_drop":false,"type":"logical","mode":"and","rules":[{"network":"udp"},{"port":443}]},
       {"action":"reject","method":"default","no_drop":false,"rule_set":["aff","yun"]},

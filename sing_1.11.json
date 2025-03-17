@@ -8,11 +8,11 @@
   "dns": {
     "servers": [
       {
-        "address": "https://8.8.8.8/dns-query",
+        "address": "https://94.140.14.14/dns-query",
         "tag": "direct-dns"
       },
       {
-        "address": "https://8.8.8.8/dns-query",
+        "address": "https://9.9.9.9/dns-query",
         "tag": "remote-dns"
       }
     ],

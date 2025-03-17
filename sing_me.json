@@ -8,38 +8,15 @@
   "dns": {
     "servers": [
       {
-        "address": "https://8.8.8.8/dns-query",
+        "address": "https://94.140.14.14/dns-query",
         "tag": "direct-dns"
       },
       {
-        "address": "https://8.8.8.8/dns-query",
+        "address": "https://9.9.9.9/dns-query",
         "tag": "remote-dns"
       }
     ],
     "rules": [
-      {
-        "action": "reject",
-        "method": "default",
-        "no_drop": false,
-        "domain_suffix": [
-          ".xiaomi.com",
-          ".xiaomi.net",
-          ".miui.com",
-          ".mi.com",
-          "windowsupdate.com",
-          "windows.net",
-          "windows.com",
-          "footprintdns.com",
-          "office.com",
-          "msedge.net",
-          "a-msedge.net",
-          "skype.com",
-          "xbox.com",
-          "xboxlive.com",
-          "msftauth.net",
-          "msauth.net"
-        ]
-      },
       {
         "outbound": "qqoli",
         "server": "remote-dns"
@@ -2276,29 +2253,6 @@
         "source_ip_cidr": [
           "224.0.0.0/3",
           "10.10.34.0/24"
-        ]
-      },
-      {
-        "action": "reject",
-        "method": "default",
-        "no_drop": false,
-        "domain_suffix": [
-          ".xiaomi.com",
-          ".xiaomi.net",
-          ".miui.com",
-          ".mi.com",
-          "windowsupdate.com",
-          "windows.net",
-          "windows.com",
-          "footprintdns.com",
-          "office.com",
-          "msedge.net",
-          "a-msedge.net",
-          "skype.com",
-          "xbox.com",
-          "xboxlive.com",
-          "msftauth.net",
-          "msauth.net"
         ]
       },
       {

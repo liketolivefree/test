@@ -1,36 +1,24 @@
 {
   "log": {
+    "disabled": false,
     "level": "info",
+    "output": "box.log",
     "timestamp": false
   },
   "dns": {
     "servers": [
       {
-        "type": "udp",
+        "type": "https",
         "tag": "direct-dns",
-        "server": "8.8.8.8",
-        "detour": "direct"
+        "server": "8.8.8.8"
       },
       {
         "type": "https",
         "tag": "remote-dns",
-        "server": "1.1.1.1",
-        "detour": "qqoli"
+        "server": "1.1.1.1"
       }
     ],
     "rules": [
-      {
-        "action": "reject",
-        "method": "default",
-        "no_drop": false,
-        "query_type": [
-          "A",
-          "AAAA",
-          "CNAME"
-        ],
-        "invert": true,
-        "disable_cache": true
-      },
       {
         "action": "reject",
         "method": "default",
@@ -59,31 +47,14 @@
         "method": "default",
         "no_drop": false,
         "rule_set": "aff"
-      },
-      {
-        "action": "route",
-        "server": "direct-dns",
-        "domain_suffix": ".ir"
-      },
-      {
-        "action": "route",
-        "server": "direct-dns",
-        "rule_set": [
-          "xal",
-          "loo"
-        ]
       }
     ],
     "final": "remote-dns",
-    "strategy": "ipv4_only",
-    "disable_cache": false
-  },
-  "ntp": {
-    "enabled": true,
-    "interval": "30m",
-    "server": "pool.ntp.org",
-    "server_port": 123,
-    "detour": "direct"
+    "strategy": "prefer_ipv4",
+    "disable_cache": false,
+    "disable_expire": false,
+    "independent_cache": false,
+    "reverse_mapping": false
   },
   "inbounds": [
     {
@@ -216,7 +187,10 @@
         "qoli_0863",
         "qoli_0974",
         "qoli_0991"
-      ]
+      ],
+      "default": "mmobi",
+      "interrupt_exist_connections": false,
+      "domain_resolver": "remote-dns"
     },
     {
       "type": "urltest",
@@ -325,11 +299,13 @@
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
-      "tolerance": 15
+      "tolerance": 15,
+      "interrupt_exist_connections": false
     },
     {
       "type": "direct",
-      "tag": "direct"
+      "tag": "direct",
+      "domain_resolver": "direct-dns"
     },
     {
       "tag": "qoli_0010",
@@ -2245,14 +2221,13 @@
     "final": "qqoli",
     "auto_detect_interface": true,
     "override_android_vpn": true,
-    "default_domain_resolver": "remote-dns",
     "rules": [
       {
         "action": "sniff"
       },
       {
         "action": "resolve",
-        "strategy": "ipv4_only"
+        "strategy": "prefer_ipv4"
       },
       {
         "action": "hijack-dns",

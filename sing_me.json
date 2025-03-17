@@ -41,12 +41,6 @@
         ]
       },
       {
-        "action": "reject",
-        "method": "default",
-        "no_drop": false,
-        "rule_set": "aff_me"
-      },
-      {
         "outbound": "qqoli",
         "server": "remote-dns"
       },
@@ -2367,7 +2361,7 @@
       {
         "action": "route",
         "outbound": "qqoli",
-        "domain": [
+        "domain_suffix": [
           "time.android.com",
           "time.windows.com",
           "time.nist.gov",
@@ -2379,7 +2373,7 @@
       {
         "action": "route",
         "outbound": "qqoli",
-        "domain_suffix": [
+        "domain": [
           "answers.microsoft.com",
           "docs.microsoft.com",
           "download.microsoft.com",

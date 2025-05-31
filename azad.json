@@ -1,7 +1,9 @@
 {
   "log": {
     "disabled": false,
-    "level": "debug"
+    "level": "debug",
+    "output": "box.log"
+  },
   },
   "dns": {
     "servers": [

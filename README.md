@@ -13,12 +13,12 @@ https://github.com/liketolivefree/test/raw/main/singbox.zip
 
 لینگ دریافت پکیج سینگ باکس سبک:
 
-https://github.com/liketolivefree/test/raw/main/singbox.zip
+https://github.com/liketolivefree/test/raw/main/singbox_l.zip
 
 .
 
 لینگ دریافت پکیج سینگ باکس بدون رول:
 
-https://github.com/liketolivefree/test/raw/main/singbox.zip
+https://github.com/liketolivefree/test/raw/main/singbox_rs.zip
 
 ---

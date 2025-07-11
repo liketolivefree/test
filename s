@@ -1,1 +1,820 @@
-dmxlc3M6Ly80MDUwNGNlNy04YWYxLTRlMDItODQxOS0wY2RmMjkzMjA5ODdAdGltZS5jZGFydnBoLmlyOjQ0Mz9lbmNyeXB0aW9uPW5vbmUmc2VjdXJpdHk9cmVhbGl0eSZzbmk9dGltZS5jZGFydnBoLmlyJmZwPWNocm9tZSZwYms9Q1MwdEE2OG9ib0ZyZzN6WTE4Y3JFODJKbE9rZUxwa0k4aGlGVmpsU3NRVSZzaWQ9YzUmc3B4PSUyRiZ0eXBlPWdycGMjYjMNCnZsZXNzOi8vMzM3MDcwNDAtZWRjZi00MTg1LTk0ZTQtMmEwNzEzMTVjNjAyQHZwbl9wcm94eV9jaGFubmVsX3Zwbl9wcm94eV9jaGFubmVsLmhvaG9kLmlyOjQ0Mz9lbmNyeXB0aW9uPW5vbmUmc2VjdXJpdHk9cmVhbGl0eSZzbmk9dnBuX3Byb3h5X2NoYW5uZWxfdnBuX3Byb3h5X2NoYW5uZWwuaG9ob2QuaXImZnA9Y2hyb21lJnBiaz1HcGdmc0EtVThZOE0zTFJjVGZzYUJWaUR0cDJWbE41cmlTTExaMmt4RWlRJnNpZD03ZGVmNGRkZSZ0eXBlPXRjcCZoZWFkZXJUeXBlPW5vbmUjYTINCnZsZXNzOi8vODBkMWZlNTktNjBmNC00MjcyLWEyODAtODIwZTFlZjBhNzU0QDEwNC4xOC4yNi45MDo0NDM/ZW5jcnlwdGlvbj1ub25lJnNlY3VyaXR5PXRscyZzbmk9cGFnZXMuZGV2JmZwPXJhbmRvbSZ0eXBlPXdzJmhvc3Q9dGZzNzMzLnBhZ2VzLmRldiZwYXRoPSUyRlRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheSUzRmVkJTNEMjA0OCNiMg0Kdmxlc3M6Ly9kMDI5ODUzNi1kNjcwLTQwNDUtYmJiMS1kZGQ1ZWE2ODY4M2VAMTk4LjYyLjYyLjQ6NDQzP2VuY3J5cHRpb249bm9uZSZzZWN1cml0eT10bHMmc25pPWF6YWRuZXQtN3B5LnBhZ2VzLmRldiZmcD1yYW5kb21pemVkJnR5cGU9d3MmaG9zdD1hemFkbmV0LTdweS5wYWdlcy5kZXYmcGF0aD0lMkYjYTgNCnZsZXNzOi8vZWVmMzQ1YmItZWM0My00OTM2LTliYTUtOTQ2N2E5OWY2NTQ1QG92aC56ZXJvb25lcnMuY29tOjQ0Mz9lbmNyeXB0aW9uPW5vbmUmc2VjdXJpdHk9dGxzJnNuaT1vdmguemVyb29uZXJzLmNvbSZhbHBuPWgzJTJDaDIlMkNodHRwJTJGMS4xJmZwPXJhbmRvbSZhbGxvd0luc2VjdXJlPTEmdHlwZT10Y3AmaGVhZGVyVHlwZT1ub25lI2I3DQp2bGVzczovLzMwMWQwNDlmLTI2ZDktMTViYS1hODNjLWIxZDUxMTFkNDQ0NEA2Mi42MC4yNDQuMjUyOjI1ODg4P2VuY3J5cHRpb249bm9uZSZmbG93PXh0bHMtcnByeC12aXNpb24mc2VjdXJpdHk9cmVhbGl0eSZzbmk9d3d3Lm1pY3Jvc29mdC5jb20mZnA9Y2hyb21lJnBiaz0xd1dKX0hKZExDaE15RXFiMWFnVTBwUXIyNjk2Nks1U0s0dTdlaHN0LVZRJnNpZD04YzVmOTdjODZhNzEwYSZ0eXBlPXRjcCZoZWFkZXJUeXBlPW5vbmUjcV8xMTc1DQp2bGVzczovL2MzZTg2ZDBjLWJmZTUtNGJiNS1hMDUxLTVlMTQzZGYyMDI0ZEBvMi5zaWdtYW1lc3Nlbmdlci5jb206NDQzP2VuY3J5cHRpb249bm9uZSZzZWN1cml0eT10bHMmc25pPW8yLnNpZ21hbWVzc2VuZ2VyLmNvbSZhbHBuPWgzJTJDaDIlMkNodHRwJTJGMS4xJmZwPXJhbmRvbSZhbGxvd0luc2VjdXJlPTEmdHlwZT10Y3AmaGVhZGVyVHlwZT1ub25lI2I4DQp2bGVzczovLzQ2Njc3NzE2LTQ5MGQtNGE1MS04YTY4LWM0NDA5MDUwNWRhM0ByZWFsLWFsbDIuc2RjYXJkcy5pcjo4NTA5P2VuY3J5cHRpb249bm9uZSZzZWN1cml0eT1yZWFsaXR5JnNuaT10Z2p1Lm9yZyZmcD1maXJlZm94JnBiaz1MRC0tTjRYNUZvNlVLaThjNlhJVUdmRkN1UldLbXZMSGtfYndhY1pWREQ0JnNpZD02N2NlYmEwNTIwMGU0MmRmJnR5cGU9dGNwJmhlYWRlclR5cGU9bm9uZSNxXzI1DQp2bGVzczovL2QwMjk4NTM2LWQ2NzAtNDA0NS1iYmIxLWRkZDVlYTY4NjgzZUAxOTguNjIuNjIuNDo0NDM/ZW5jcnlwdGlvbj1ub25lJnNlY3VyaXR5PXRscyZzbmk9YXphZG5ldC03cHkucGFnZXMuZGV2JmZwPXJhbmRvbWl6ZWQmdHlwZT13cyZob3N0PWF6YWRuZXQtN3B5LnBhZ2VzLmRldiZwYXRoPSUyRmF6YWRuZXQtN3B5LnBhZ2VzLmRldiUyRiUzRmVkJTNEMjU2MCNxXzQNCnZsZXNzOi8vMDFkNjhhOWItYmU0OC00YzdiLWI0ZjktNzFiMjljNGNmYWNhQGFwaS5jaGFuZHBsdXMuY29tOjQ0Mz9lbmNyeXB0aW9uPW5vbmUmc2VjdXJpdHk9dGxzJnNuaT1hcGkuY2hhbmRwbHVzLmNvbSZhbHBuPWgzJTJDaDIlMkNodHRwJTJGMS4xJmZwPXJhbmRvbSZhbGxvd0luc2VjdXJlPTEmdHlwZT10Y3AmaGVhZGVyVHlwZT1ub25lI2I2DQp2bGVzczovLzk2YTFiNzI0LTY4ZDItNGY0ZC1hYjI1LTM4ZWNkODM1NzdiY0BpcHcuZ2ZkdjU0Y3ZnaGhnZmhnai1uamhnajY0LmluZm86ODQ0Mz9lbmNyeXB0aW9uPW5vbmUmc2VjdXJpdHk9dGxzJnNuaT1JeUZwTGtYazEwLmpPb0xhSm9PbEEuT3JHJmFscG49aDNoMiZmcD1yYW5kb20mdHlwZT13cyZob3N0PUl5RnBMa1hrMTAuak9vTGFKb09sQS5PckcmcGF0aD0lMkYjYTUNCnZsZXNzOi8vOTZhMWI3MjQtNjhkMi00ZjRkLWFiMjUtMzhlY2Q4MzU3N2JjQGlwdy5nZmR2NTRjdmdoaGdmaGdqLW5qaGdqNjQuaW5mbzo4NDQzP2VuY3J5cHRpb249bm9uZSZzZWN1cml0eT10bHMmc25pPUl5RnBMa1hrMTAuak9vTGFKb09sQS5PckcmZnA9cmFuZG9tJnR5cGU9d3MmaG9zdD1JeUZwTGtYazEwLmpPb0xhSm9PbEEuT3JHJnBhdGg9JTJGI3FfMjENCnZsZXNzOi8vODBkMWZlNTktNjBmNC00MjcyLWEyODAtODIwZTFlZjBhNzU0QDEwNC4xNi41My4xMTo0NDM/ZW5jcnlwdGlvbj1ub25lJnNlY3VyaXR5PXRscyZzbmk9cGFnZXMuZGV2JmZwPXJhbmRvbSZ0eXBlPXdzJmhvc3Q9dGZzNzMzLnBhZ2VzLmRldiZwYXRoPSUyRlRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheS0tLVRlbGVncmFtLVhWMnJheSUzRmVkJTNEMjA0OCNhNA0Kdmxlc3M6Ly84OTM4ZDYzZi03ZGRhLTQzYmUtOWExZS04MTlhZGFjMjgyOTdAaXB3LmdmZHY1NGN2Z2hoZ2ZoZ2otbmpoZ2o2NC5pbmZvOjQ0Mz9lbmNyeXB0aW9uPW5vbmUmc2VjdXJpdHk9dGxzJnNuaT1zbWlUcy5qb09qZWh0b3IuaXQuY09tJmZwPXJhbmRvbSZ0eXBlPXdzJmhvc3Q9c21pVHMuam9PamVodG9yLml0LmNPbSZwYXRoPSUyRiNxXzI0DQp2bGVzczovL2M0Y2Q5NjU2LTgxYTctNDM0Mi05YzBmLTk1OWFkMzMzYWNhZUBhbGwuNHF3ZXJ0eXVpb3Bhc2RmZ2hqa2x6eGN2Ym5tbW5idmN4emxramhnZmRzYXBvaXV5dHJld3ExMjM0NTY3ODkwLmNvbTo0NDM/ZW5jcnlwdGlvbj1ub25lJnNlY3VyaXR5PXRscyZzbmk9ZGUycmFkaW4uNHF3ZXJ0eXVpb3Bhc2RmZ2hqa2x6eGN2Ym5tbW5idmN4emxramhnZmRzYXBvaXV5dHJld3ExMjM0NTY3ODkwLmNvbSZmcD1yYW5kb20mdHlwZT13cyZob3N0PWRlMnJhZGluLjRxd2VydHl1aW9wYXNkZmdoamtsenhjdmJubW1uYnZjeHpsa2poZ2Zkc2Fwb2l1eXRyZXdxMTIzNDU2Nzg5MC5jb20mcGF0aD0lMkZ3cyUzRmVkJTNEMjU2MCNxXzE2DQp2bGVzczovLzhmODJhY2JlLWYzMjgtNDcxYS04MDAwLWZiZWEzNDllNmNlMEBkZWRpYy5hcHAtYnJvd3Nlci5vcmc6NDQzP2VuY3J5cHRpb249bm9uZSZzZWN1cml0eT10bHMmc25pPWRlZGljLmFwcC1icm93c2VyLm9yZyZhbHBuPWgzJTJDaDIlMkNodHRwJTJGMS4xJmZwPXJhbmRvbSZhbGxvd0luc2VjdXJlPTEmdHlwZT10Y3AmaGVhZGVyVHlwZT1ub25lI2I0DQp2bGVzczovLzMzN2JmNzJlLWJiNzktNGQ1Zi1iZTNmLTc4MjJlYjc3MTAwY0BpcHcuZ2ZkdjU0Y3ZnaGhnZmhnai1uamhnajY0LmluZm86MjA5Nj9lbmNyeXB0aW9uPW5vbmUmc2VjdXJpdHk9dGxzJnNuaT1GdDc3VGE4UTFtLkVtU2hBYktoT2JFLm9SZyZhbHBuPWgzaDImZnA9cmFuZG9tJnR5cGU9d3MmaG9zdD1GdDc3VGE4UTFtLkVtU2hBYktoT2JFLm9SZyZwYXRoPSUyRiNhMw0Kdmxlc3M6Ly9jN2M5MjJkYS1hYjU0LTQzM2MtODA0Ni0xZjliZjlkOTVjMjNAMTg1LjIzNi4yMzIuMTM2OjEwMDE/ZW5jcnlwdGlvbj1ub25lJnNlY3VyaXR5PXJlYWxpdHkmc25pPXRlbGV3ZWJpb24uY29tJmZwPWNocm9tZSZwYms9OEd1bm44aGpXYml0NXlMdFRQY3ZMcGgwdTJvdkhMc0dvWFg0SUpTMUVRMCZzaWQ9NWZhYjBkZWImdHlwZT10Y3AmaGVhZGVyVHlwZT1ub25lI3FfNjM3Mw0Kdmxlc3M6Ly84YjBmNmYyNC1iYWUwLTQ3MmUtYmIwYS0zZDdjMDI5Y2RlODhAZnJlZWNvbmZpZy5mZXJnYWx2cG5tb2QuY29tOjMyODY5P2VuY3J5cHRpb249bm9uZSZzZWN1cml0eT1yZWFsaXR5JnNuaT1zb255LmNvbSZmcD1jaHJvbWUmcGJrPXF3QXpFSjVFZkRaZWFFUjd4TFExTHhlY25lajB1V2kzZGJJc3hZWlU4MjAmc2lkPTBjNjNmNGM3ZWEmdHlwZT1ncnBjJmF1dGhvcml0eT0mc2VydmljZU5hbWU9JTQwRmVyZ2FsVnBuTW9kJm1vZGU9Z3VuI2ExDQp2bGVzczovL2VjOGE2NWFkLWFhZmMtNDA5NS05YjhjLWVhMTA4OTBjYTYyOUAxNTQuOTIuOS4xNTE6NDQzP2VuY3J5cHRpb249bm9uZSZzZWN1cml0eT10bHMmc25pPXNpbW9yZ2guaHBjb2RlLmlyJmZwPWNocm9tZSZ0eXBlPXdzJmhvc3Q9c2ltb3JnaC5ocGNvZGUuaXImcGF0aD0lMkZKYXZpZC1TSEFILUtpbmdSZXphUGFobGF2aSUyRiUzRmVkJTNEMjU2MCNxXzUyNjANCnZsZXNzOi8vZDAyOTg1MzYtZDY3MC00MDQ1LWJiYjEtZGRkNWVhNjg2ODNlQDE5OC42Mi42Mi40OjQ0Mz9lbmNyeXB0aW9uPW5vbmUmc2VjdXJpdHk9dGxzJnNuaT1hemFkbmV0LTdweS5wYWdlcy5kZXYmZnA9Y2hyb21lJnR5cGU9d3MmaG9zdD1hemFkbmV0LTdweS5wYWdlcy5kZXYmcGF0aD0lMkYjYTkNCnZsZXNzOi8vZWM4YTY1YWQtYWFmYy00MDk1LTliOGMtZWExMDg5MGNhNjI5QDE1NC45Mi45LjQ2OjQ0Mz9lbmNyeXB0aW9uPW5vbmUmc2VjdXJpdHk9dGxzJnNuaT1zaW1vcmdoLmhwY29kZS5pciZmcD1maXJlZm94JnR5cGU9d3MmaG9zdD1zaW1vcmdoLmhwY29kZS5pciZwYXRoPSUyRkphdmlkLVNIQUgtS2luZ1JlemFQYWhsYXZpJTJGJTNGZWQlM0QlNDB2cG5zZXJ2ZXJycl92cG5zZXJ2ZXJycl92cG5zZXJ2ZXJyciNxXzUzMDcNCnZsZXNzOi8vYmVhMzRiNzMtMzI0NC00NzViLWI5MTQtN2JiODBlMWNkYTkxQG1hcjEzdC5yYXNtYXIxNDAwLmNvbToyMDgwP2VuY3J5cHRpb249bm9uZSZzZWN1cml0eT1yZWFsaXR5JnNuaT1kYXNoLmNsb3VkZmxhcmUuY29tJmZwPWNocm9tZSZwYms9TDNsSldkVTdtSGlqU2tOYU50LW0yOU9ZbktuSHZIWVJ4ZzJZOFhYRmRuZyZzaWQ9YmY1MTczNjcyNjc2ODUmdHlwZT10Y3AmaGVhZGVyVHlwZT1ub25lI3FfMjE1Ng0Kdmxlc3M6Ly8yNGE0YWE5Yi1iMzQxLTQ3MTctOWQ0YS0wMGQ3NGMyYjg0ZTBAaXB3LmdmZHY1NGN2Z2hoZ2ZoZ2otbmpoZ2o2NC5pbmZvOjIwOTY/ZW5jcnlwdGlvbj1ub25lJnNlY3VyaXR5PXRscyZzbmk9SXdNdEczZUlvTS52UGJFdEhvUnZQMDAyLmlOZk8mZnA9cmFuZG9tJnR5cGU9d3MmaG9zdD1Jd010RzNlSW9NLnZQYkV0SG9SdlAwMDIuaU5mTyZwYXRoPSUyRiNxXzIwJUUyJTgwJThDDQp2bGVzczovLzMxOTYxZDcyLWIzZGYtNGYwYi04NGMzLWM0NTc1YjJiMTQyYkBuZXd1cy1jZWc1LjU1NTE5OS54eXo6ODQ0Mz9lbmNyeXB0aW9uPW5vbmUmZmxvdz14dGxzLXJwcngtdmlzaW9uJnNlY3VyaXR5PXRscyZzbmk9c3NsLndzZm9nLmNvLnVrJmZwPWNocm9tZSZ0eXBlPXRjcCZoZWFkZXJUeXBlPW5vbmUjcV8yMjI5
+{
+  "log": {
+    "level": "info",
+    "output": "box.log"
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "local-dns",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "test-dns",
+        "address": "https://146.112.41.2/dns-query",
+        "detour": "direct"
+      },
+      {
+        "tag": "direct-dns",
+        "address": "https://8.8.8.8/dns-query"
+      },
+      {
+        "tag": "remote-dns",
+        "address": "https://8.8.8.8/dns-query"
+      },
+      {
+        "tag": "final-dns",
+        "address": "https://1.1.1.1/dns-query"
+      }
+    ],
+    "rules": [
+      {
+        "domain_suffix": "jsdelivr.net",
+        "server": "local-dns"
+      },
+      {
+        "outbound": "any",
+        "server": "test-dns"
+      },
+      {
+        "domain_suffix": [
+          "msftncsi.com",
+          "windowsupdate.com",
+          "mi.com",
+          "miui.com",
+          "miui.net",
+          "xiaomi.com",
+          "xiaomi.net",
+          "mi-img.com",
+          "miman.io"
+        ],
+        "action": "reject"
+      },
+      {
+        "domain_suffix": ".ir",
+        "server": "direct-dns"
+      },
+      {
+        "rule_set": "xal",
+        "server": "direct-dns"
+      },
+      {
+        "rule_set": "oki",
+        "server": "remote-dns"
+      }
+    ],
+    "final": "final-dns",
+    "strategy": "prefer_ipv4"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun0",
+      "mtu": 9000,
+      "address": "172.19.0.1/30",
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 7890
+        }
+      }
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 7891
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "qqoli",
+      "outbounds": [
+        "mmobi",
+        "b3",
+        "a2",
+        "b2",
+        "a8",
+        "b7",
+        "q_1175",
+        "b8",
+        "q_25",
+        "q_4",
+        "b6",
+        "a5",
+        "q_21",
+        "a4",
+        "q_24",
+        "q_16",
+        "b4",
+        "a3",
+        "q_6373",
+        "a1",
+        "q_5260",
+        "a9",
+        "q_5307",
+        "q_2156",
+        "q_20‌",
+        "q_2229"
+      ],
+      "default": "mmobi"
+    },
+    {
+      "type": "urltest",
+      "tag": "mmobi",
+      "outbounds": [
+        "b3",
+        "a2",
+        "b2",
+        "a8",
+        "b7",
+        "q_1175",
+        "b8",
+        "q_25",
+        "q_4",
+        "b6",
+        "a5",
+        "q_21",
+        "a4",
+        "q_24",
+        "q_16",
+        "b4",
+        "a3",
+        "q_6373",
+        "a1",
+        "q_5260",
+        "a9",
+        "q_5307",
+        "q_2156",
+        "q_20‌",
+        "q_2229"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "6m0s",
+      "tolerance": 5
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "vless",
+      "tag": "b3",
+      "server": "time.cdarvph.ir",
+      "server_port": 443,
+      "uuid": "40504ce7-8af1-4e02-8419-0cdf29320987",
+      "tls": {
+        "enabled": true,
+        "server_name": "time.cdarvph.ir",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "CS0tA68oboFrg3zY18crE82JlOkeLpkI8hiFVjlSsQU",
+          "short_id": "c5"
+        }
+      },
+      "transport": {
+        "type": "grpc"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "a2",
+      "server": "vpn_proxy_channel_vpn_proxy_channel.hohod.ir",
+      "server_port": 443,
+      "uuid": "33707040-edcf-4185-94e4-2a071315c602",
+      "tls": {
+        "enabled": true,
+        "server_name": "vpn_proxy_channel_vpn_proxy_channel.hohod.ir",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "GpgfsA-U8Y8M3LRcTfsaBViDtp2VlN5riSLLZ2kxEiQ",
+          "short_id": "7def4dde"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "b2",
+      "server": "104.18.26.90",
+      "server_port": 443,
+      "uuid": "80d1fe59-60f4-4272-a280-820e1ef0a754",
+      "tls": {
+        "enabled": true,
+        "server_name": "pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray",
+        "headers": {
+          "Host": "tfs733.pages.dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "a8",
+      "server": "198.62.62.4",
+      "server_port": 443,
+      "uuid": "d0298536-d670-4045-bbb1-ddd5ea68683e",
+      "tls": {
+        "enabled": true,
+        "server_name": "azadnet-7py.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "azadnet-7py.pages.dev"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "b7",
+      "server": "ovh.zerooners.com",
+      "server_port": 443,
+      "uuid": "eef345bb-ec43-4936-9ba5-9467a99f6545",
+      "tls": {
+        "enabled": true,
+        "server_name": "ovh.zerooners.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_1175",
+      "server": "62.60.244.252",
+      "server_port": 25888,
+      "uuid": "301d049f-26d9-15ba-a83c-b1d5111d4444",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.microsoft.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "1wWJ_HJdLChMyEqb1agU0pQr26966K5SK4u7ehst-VQ",
+          "short_id": "8c5f97c86a710a"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "b8",
+      "server": "o2.sigmamessenger.com",
+      "server_port": 443,
+      "uuid": "c3e86d0c-bfe5-4bb5-a051-5e143df2024d",
+      "tls": {
+        "enabled": true,
+        "server_name": "o2.sigmamessenger.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_25",
+      "server": "real-all2.sdcards.ir",
+      "server_port": 8509,
+      "uuid": "46677716-490d-4a51-8a68-c44090505da3",
+      "tls": {
+        "enabled": true,
+        "server_name": "tgju.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "LD--N4X5Fo6UKi8c6XIUGfFCuRWKmvLHk_bwacZVDD4",
+          "short_id": "67ceba05200e42df"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_4",
+      "server": "198.62.62.4",
+      "server_port": 443,
+      "uuid": "d0298536-d670-4045-bbb1-ddd5ea68683e",
+      "tls": {
+        "enabled": true,
+        "server_name": "azadnet-7py.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/azadnet-7py.pages.dev/",
+        "headers": {
+          "Host": "azadnet-7py.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "b6",
+      "server": "api.chandplus.com",
+      "server_port": 443,
+      "uuid": "01d68a9b-be48-4c7b-b4f9-71b29c4cfaca",
+      "tls": {
+        "enabled": true,
+        "server_name": "api.chandplus.com",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "a5",
+      "server": "ipw.gfdv54cvghhgfhgj-njhgj64.info",
+      "server_port": 8443,
+      "uuid": "96a1b724-68d2-4f4d-ab25-38ecd83577bc",
+      "tls": {
+        "enabled": true,
+        "server_name": "IyFpLkXk10.jOoLaJoOlA.OrG"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "IyFpLkXk10.jOoLaJoOlA.OrG"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_21",
+      "server": "ipw.gfdv54cvghhgfhgj-njhgj64.info",
+      "server_port": 8443,
+      "uuid": "96a1b724-68d2-4f4d-ab25-38ecd83577bc",
+      "tls": {
+        "enabled": true,
+        "server_name": "IyFpLkXk10.jOoLaJoOlA.OrG"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "IyFpLkXk10.jOoLaJoOlA.OrG"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "a4",
+      "server": "104.16.53.11",
+      "server_port": 443,
+      "uuid": "80d1fe59-60f4-4272-a280-820e1ef0a754",
+      "tls": {
+        "enabled": true,
+        "server_name": "pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray---Telegram-XV2ray",
+        "headers": {
+          "Host": "tfs733.pages.dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_24",
+      "server": "ipw.gfdv54cvghhgfhgj-njhgj64.info",
+      "server_port": 443,
+      "uuid": "8938d63f-7dda-43be-9a1e-819adac28297",
+      "tls": {
+        "enabled": true,
+        "server_name": "smiTs.joOjehtor.it.cOm"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "smiTs.joOjehtor.it.cOm"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_16",
+      "server": "all.4qwertyuiopasdfghjklzxcvbnmmnbvcxzlkjhgfdsapoiuytrewq1234567890.com",
+      "server_port": 443,
+      "uuid": "c4cd9656-81a7-4342-9c0f-959ad333acae",
+      "tls": {
+        "enabled": true,
+        "server_name": "de2radin.4qwertyuiopasdfghjklzxcvbnmmnbvcxzlkjhgfdsapoiuytrewq1234567890.com"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ws",
+        "headers": {
+          "Host": "de2radin.4qwertyuiopasdfghjklzxcvbnmmnbvcxzlkjhgfdsapoiuytrewq1234567890.com"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "b4",
+      "server": "dedic.app-browser.org",
+      "server_port": 443,
+      "uuid": "8f82acbe-f328-471a-8000-fbea349e6ce0",
+      "tls": {
+        "enabled": true,
+        "server_name": "dedic.app-browser.org",
+        "insecure": true
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "a3",
+      "server": "ipw.gfdv54cvghhgfhgj-njhgj64.info",
+      "server_port": 2096,
+      "uuid": "337bf72e-bb79-4d5f-be3f-7822eb77100c",
+      "tls": {
+        "enabled": true,
+        "server_name": "Ft77Ta8Q1m.EmShAbKhObE.oRg"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "Ft77Ta8Q1m.EmShAbKhObE.oRg"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_6373",
+      "server": "185.236.232.136",
+      "server_port": 1001,
+      "uuid": "c7c922da-ab54-433c-8046-1f9bf9d95c23",
+      "tls": {
+        "enabled": true,
+        "server_name": "telewebion.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "8Gunn8hjWbit5yLtTPcvLph0u2ovHLsGoXX4IJS1EQ0",
+          "short_id": "5fab0deb"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "a1",
+      "server": "freeconfig.fergalvpnmod.com",
+      "server_port": 32869,
+      "uuid": "8b0f6f24-bae0-472e-bb0a-3d7c029cde88",
+      "tls": {
+        "enabled": true,
+        "server_name": "sony.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "qwAzEJ5EfDZeaER7xLQ1Lxecnej0uWi3dbIsxYZU820",
+          "short_id": "0c63f4c7ea"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "@FergalVpnMod"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_5260",
+      "server": "154.92.9.151",
+      "server_port": 443,
+      "uuid": "ec8a65ad-aafc-4095-9b8c-ea10890ca629",
+      "tls": {
+        "enabled": true,
+        "server_name": "simorgh.hpcode.ir"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Javid-SHAH-KingRezaPahlavi/",
+        "headers": {
+          "Host": "simorgh.hpcode.ir"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "a9",
+      "server": "198.62.62.4",
+      "server_port": 443,
+      "uuid": "d0298536-d670-4045-bbb1-ddd5ea68683e",
+      "tls": {
+        "enabled": true,
+        "server_name": "azadnet-7py.pages.dev"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "azadnet-7py.pages.dev"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_5307",
+      "server": "154.92.9.46",
+      "server_port": 443,
+      "uuid": "ec8a65ad-aafc-4095-9b8c-ea10890ca629",
+      "tls": {
+        "enabled": true,
+        "server_name": "simorgh.hpcode.ir"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Javid-SHAH-KingRezaPahlavi/?ed=@vpnserverrr_vpnserverrr_vpnserverrr",
+        "headers": {
+          "Host": "simorgh.hpcode.ir"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_2156",
+      "server": "mar13t.rasmar1400.com",
+      "server_port": 2080,
+      "uuid": "bea34b73-3244-475b-b914-7bb80e1cda91",
+      "tls": {
+        "enabled": true,
+        "server_name": "dash.cloudflare.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "L3lJWdU7mHijSkNaNt-m29OYnKnHvHYRxg2Y8XXFdng",
+          "short_id": "bf517367267685"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_20‌",
+      "server": "ipw.gfdv54cvghhgfhgj-njhgj64.info",
+      "server_port": 2096,
+      "uuid": "24a4aa9b-b341-4717-9d4a-00d74c2b84e0",
+      "tls": {
+        "enabled": true,
+        "server_name": "IwMtG3eIoM.vPbEtHoRvP002.iNfO"
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "IwMtG3eIoM.vPbEtHoRvP002.iNfO"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "type": "vless",
+      "tag": "q_2229",
+      "server": "newus-ceg5.555199.xyz",
+      "server_port": 8443,
+      "uuid": "31961d72-b3df-4f0b-84c3-c4575b2b142b",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "ssl.wsfog.co.uk"
+      },
+      "packet_encoding": "xudp"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "inbound": "tun-in",
+        "action": "sniff",
+        "timeout": "500ms"
+      },
+      {
+        "inbound": "mixed-in",
+        "action": "sniff",
+        "timeout": "500ms"
+      },
+      {
+        "inbound": "tun-in",
+        "action": "resolve",
+        "strategy": "prefer_ipv4"
+      },
+      {
+        "inbound": "mixed-in",
+        "action": "resolve",
+        "strategy": "prefer_ipv4"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "port": 53,
+        "action": "hijack-dns"
+      },
+      {
+        "protocol": "quic",
+        "action": "reject"
+      },
+      {
+        "protocol": "stun",
+        "action": "reject"
+      },
+      {
+        "ip_cidr": [
+          "224.0.0.0/3",
+          "10.10.34.0/24"
+        ],
+        "action": "reject"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "network": "tcp"
+          },
+          {
+            "port": 853
+          }
+        ],
+        "action": "reject"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "network": "udp"
+          },
+          {
+            "port": 443
+          }
+        ],
+        "action": "reject"
+      },
+      {
+        "domain_suffix": [
+          "msftncsi.com",
+          "windowsupdate.com",
+          "mi.com",
+          "miui.com",
+          "miui.net",
+          "xiaomi.com",
+          "xiaomi.net",
+          "mi-img.com",
+          "miman.io"
+        ],
+        "action": "reject"
+      },
+      {
+        "rule_set": "wht",
+        "outbound": "qqoli"
+      },
+      {
+        "rule_set": "aff_me",
+        "action": "reject"
+      },
+      {
+        "rule_set": "yun_me",
+        "action": "reject"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "domain_suffix": ".ir",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "xal",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "loo",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "oki",
+        "outbound": "qqoli"
+      },
+      {
+        "rule_set": "doki",
+        "outbound": "qqoli"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "wht",
+        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/kobabi@main/wht.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "aff_me",
+        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/kobabi@main/aff_me.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "yun_me",
+        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/kobabi@main/yun_me.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "oki",
+        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/kobabi@main/oki.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "doki",
+        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/kobabi@main/doki.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "xal",
+        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/kobabi@main/xal.srs",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "loo",
+        "url": "https://cdn.jsdelivr.net/gh/liketolivefree/kobabi@main/loo.srs",
+        "download_detour": "direct"
+      }
+    ],
+    "final": "qqoli",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    }
+  }
+}

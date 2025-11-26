@@ -90,7 +90,7 @@ sniffer:
 proxy-providers:
   t:
     type: http
-    url: https://raw.githubusercontent.com/liketolivefree/test/main/t.yaml
+    url: https://raw.githubusercontent.com/liketolivefree/test/main/t.yml
     interval: 3600
     path: ./proxy-providers/t.yaml
     health-check:

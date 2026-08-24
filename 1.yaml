@@ -69,7 +69,7 @@ proxy-providers:
     type: http
     url: https://raw.githubusercontent.com/liketolivefree/test/main/w.yaml
     interval: 14400
-    path: ./proxy-providers/q.yaml
+    path: ./proxy-providers/w.yaml
     health-check:
       enable: true
       interval: 1800
